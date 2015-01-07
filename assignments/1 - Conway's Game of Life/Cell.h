@@ -7,6 +7,7 @@ class Cell
     private:
         CellState state;
         CellState nextState;
+
     public:
         Cell();
         Cell(CellState);

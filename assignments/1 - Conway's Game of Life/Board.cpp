@@ -6,8 +6,22 @@ Board::Board(int height, int width)
 {
     boardHeight = height + (MARGIN * 2);
     boardWidth = width + (MARGIN * 2);
-
+    boardInit = false;
     GenerateEmptyBoard(height, width);
+    boardInit = true;
+}
+
+Board::~Board()
+{
+    if(boardInit)
+    {
+        for (int i = 0; i < boardHeight; i++)
+        {
+            delete[] boardWorld[i];
+        }
+
+        delete[] boardWorld;
+    }
 }
 
 void Board::PrintBoard()
@@ -155,6 +169,16 @@ void Board::GenerateEmptyBoard(int height, int width)
 {
     long heightWithMargin = height + (MARGIN * 2);
     long widthWithMargin = width + (MARGIN *2);
+
+    if(boardInit)
+    {
+        for (int i = 0; i < heightWithMargin; i++)
+        {
+            delete[] boardWorld[i];
+        }
+
+        delete[] boardWorld;
+    }
 
     boardWorld = new Cell* [heightWithMargin];
     for(int i = 0; i < heightWithMargin; i++)

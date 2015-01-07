@@ -18,10 +18,13 @@ class Board
         long boardHeight;
         long boardWidth;
 
+        bool boardInit;
+
         int SumNeighborCells(int, int);
     public:
         Board();
         Board(int, int);
+        ~Board();
 
         void GenerateEmptyBoard(int, int);
         void SetBlinkerBoard(int, int, int, int);
