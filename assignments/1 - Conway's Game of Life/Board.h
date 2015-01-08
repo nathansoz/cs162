@@ -10,6 +10,13 @@
 
 const int MARGIN = 10;
 
+struct Cord
+{
+    Cord(int, int);
+    int x;
+    int y;
+};
+
 class Board
 {
     private:
@@ -27,7 +34,9 @@ class Board
         ~Board();
 
         void GenerateEmptyBoard(int, int);
+        void PopulateBoard(const std::vector<Cord>&, int, int);
         void SetBlinkerBoard(int, int, int, int);
+        void SetGliderGun(int, int,int, int);
         void Tick();
         void PrintBoard();
 

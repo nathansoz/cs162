@@ -1,5 +1,11 @@
 #include "Board.h"
 
+Cord::Cord(int heightFromTop, int widthFromleft)
+{
+    x = heightFromTop;
+    y = widthFromleft;
+}
+
 Board::Board() {};
 
 Board::Board(int height, int width)
@@ -36,7 +42,7 @@ void Board::PrintBoard()
             }
             else
             {
-                std::cout << "0" << " ";
+                std::cout << "." << " ";
             }
         }
 
@@ -49,73 +55,21 @@ int Board::SumNeighborCells(int height, int width)
 {
     int fillTotal = 0;
 
-    if(((height - 1) >= 0 && (height + 1) < (boardHeight - 1)) && ((width - 1) >= 0 && (width + 1) < (boardWidth - 1)))
+    for(int i = (height - 1); i <= (height + 1); i++)
     {
-        if(boardWorld[height - 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-    } //top row consideration
-    else if(((height - 1) < 0) && ((width - 1) >= 0 && (width + 1) < (boardWidth - 1)))
-    {
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-    } //bottom row consideration
-    else if(((height + 1) >= (boardHeight - 1)) && ((width - 1) >= 0 && (width + 1) < (boardWidth - 1)))
-    {
-        if(boardWorld[height - 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-    } //left row consideration
-    else if(((height - 1) >= 0 && (height + 1) < (boardHeight - 1)) && ((width - 1) < 0))
-    {
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
+        for(int j = (width -1); j <= (width + 1); j++)
+        {
+            if(i < 0 || i >= boardHeight || j < 0 || j >= boardWidth || (i == height && j == width))
+                continue;
+            else
+            {
+                if(boardWorld[i][j].GetState() == CellState:: FILLED)
+                {
+                    fillTotal++;
+                }
+            }
+        }
 
-    } //right row consideration
-    else if(((height - 1) >= 0 && (height + 1) < (boardHeight - 1)) && ((width + 1) >= (boardWidth - 1)))
-    {
-        if(boardWorld[height - 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-    }
-    else if(height == 0 && width == 0)
-    {
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-    }
-    else if(height == 0 && width == (boardWidth - 1))
-    {
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height + 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-    }
-    else if(height == (boardHeight - 1) && width == 0)
-    {
-        if(boardWorld[height][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width + 1].GetState() == CellState::FILLED) { fillTotal++; }
-    }
-    else if(height == (boardHeight - 1) && width == (boardWidth - 1))
-    {
-        if(boardWorld[height][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width].GetState() == CellState::FILLED) { fillTotal++; }
-        if(boardWorld[height - 1][width - 1].GetState() == CellState::FILLED) { fillTotal++; }
     }
 
     return fillTotal;
@@ -198,6 +152,18 @@ void Board::GenerateEmptyBoard(int height, int width)
 
 }
 
+void Board::PopulateBoard(std::vector<Cord> const & cords, int fromTop, int fromleft)
+{
+    for(int i = 0; i < cords.size(); i++)
+    {
+        int x = cords[i].x + MARGIN + fromTop;
+        int y = cords[i].y + MARGIN + fromleft;
+
+        boardWorld[x][y].SetNextState(CellState::FILLED);
+        boardWorld[x][y].Increment();
+    }
+}
+
 void Board::SetBlinkerBoard(int height, int width, int xCenterOffset, int yCenterOffset)
 {
     GenerateEmptyBoard(height, width);
@@ -212,5 +178,17 @@ void Board::SetBlinkerBoard(int height, int width, int xCenterOffset, int yCente
 
 }
 
+void Board::SetGliderGun(int height, int width, int fromTopEdge, int fromLeftEdge)
+{
+    GenerateEmptyBoard(height, width);
+
+    const std::vector<Cord> glider {Cord(0,24), Cord(1,22), Cord(1,24), Cord(2,12), Cord(2,13),Cord(2,20),Cord(2,21),
+                              Cord(2,34),Cord(2,35),Cord(3,11),Cord(3,15),Cord(3,20),Cord(3,21),Cord(3,34), Cord(3,35),
+                              Cord(4,0),Cord(4,1),Cord(4,10),Cord(4,16),Cord(4,20),Cord(4,21),Cord(5,0),Cord(5,1),
+                              Cord(5,10),Cord(5,14),Cord(5,16),Cord(5,17),Cord(5,22),Cord(5,24),Cord(6,10),Cord(6,16),
+                              Cord(6,24),Cord(7,11),Cord(7,15),Cord(8,12),Cord(8,13)};
+
+    PopulateBoard(glider, fromTopEdge, fromLeftEdge);
+}
 
 
