@@ -23,15 +23,15 @@ void SortThreeNumbers(int *a, int *b, int *c)
 
 int main()
 {
-    int a = 3;
-    int b = 1;
-    int c = 2;
+    int x = 2;
+    int y = 5;
+    int z = 1;
 
-    std::cout << a << " " << b << " " << c << std::endl;
+    std::cout << x << " " << y << " " << z << std::endl;
 
-    SortThreeNumbers(&a, &b, &c);
+    SortThreeNumbers(&x, &y, &z);
 
-    std::cout << a << " " << b << " " << c << std::endl;
+    std::cout << x << " " << y << " " << z << std::endl;
 
     return 0;
 }
