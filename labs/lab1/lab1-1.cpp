@@ -1,3 +1,25 @@
+/* Author: Nathan Sosnovske
+*
+* Created: 1/09/15
+*
+* Edited: 1/09/15
+*
+* Files: lab1-1.cpp
+*
+* Overview:
+* Sorts 3 numbers
+*
+* Input:
+*  none
+*
+* Output:
+*  three numbers, sorted
+*
+*
+*
+*
+*/
+
 #include <iostream>
 
 void SortThreeNumbers(int *a, int *b, int *c)
