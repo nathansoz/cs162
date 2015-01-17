@@ -36,19 +36,32 @@ int main()
         {
             case 1:
             {
-                board.SetBlinkerBoard(15, 10);
+                int topOffset = -1;
+                int leftOffset = -1;
+
+                while((topOffset < 0 || topOffset > 80) || (leftOffset < 0 || leftOffset > 79))
+                {
+                    std::cin.ignore(1000, '\n');
+
+                    std::cout << "Offset from top of board (0 - 21): ";
+                    std::cin >> topOffset;
+                    std::cout << "Offset from left of board (0 - 79): ";
+                    std::cin >> leftOffset;
+
+
+                }
+                board.SetBlinkerBoard(topOffset, leftOffset);
                 GameLoop(board);
-                exit(0);
                 break;
             }
             case 2:
             {
                 board.SetGlider(15, 10);
                 GameLoop(board);
-                exit(0);
                 break;
             }
             case 3:
+                board.SetGliderGun(15, 10);
                 break;
             case 4:
                 exit(0);
@@ -56,7 +69,6 @@ int main()
                 break;
         }
 
-        break;
     } while (true);
 
     return 0;
