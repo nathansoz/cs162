@@ -1,9 +1,34 @@
+/* Author: Nathan Sosnovske
+*
+* Created: 1/10/15
+*
+* Edited: 1/17/15
+*
+* Files: Board.cpp Board.h Cell.cpp Cell.h main.cpp
+*
+* Overview:
+* Implementation of Conway's Game of Life
+*
+* Input:
+*  Prompted for by program
+*
+* Output:
+*  Game of life
+*
+*/
+
 #include <chrono>
 #include <cstdlib>
 #include <thread>
 #include <unistd.h>
 #include "Board.h"
 #include "Cell.h"
+
+/*
+ * The game loop handles the actual interaction between the user and advancement of the board.
+ * User is given a choice between iterating, giving a number of iterations, and exiting
+ * One could change the usleep value to get faster or slower iterations.
+ */
 
 void GameLoop(Board &board)
 {
@@ -13,8 +38,11 @@ void GameLoop(Board &board)
     do
     {
         char choice;
+
+        //Just in case the user entered extra/invalid input
         std::cin.clear();
         std::cin.ignore(1000, '\n');
+
         std::cout << "(n)ext iteration / (s)pecify frames to advance, / e(x)it: ";
         std::cin >> choice;
         switch(choice)
@@ -48,6 +76,12 @@ void GameLoop(Board &board)
     } while(!exit);
 }
 
+/*
+    Main in this program just drives the selection of board type and allows the user
+    to exit the program. One board is used for the whole function, recycled and cleared
+    as needed when the user wants to change patterns.
+ */
+
 int main()
 {
     //generate one board object that can be used the whole time
@@ -67,9 +101,6 @@ int main()
         std::cin >> userInput;
 
 
-
-
-
         switch(userInput)
         {
             case 1:
@@ -77,6 +108,7 @@ int main()
                 int topOffset = -1;
                 int leftOffset = -1;
 
+                //this while loop to get offsets could probably be moved into a function.
                 while((topOffset < 0 || topOffset > 80) || (leftOffset < 0 || leftOffset > 79))
                 {
                     std::cin.ignore(1000, '\n');
@@ -135,6 +167,8 @@ int main()
             case 4:
                 exit(0);
             default:
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
                 break;
         }
 

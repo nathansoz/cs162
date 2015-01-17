@@ -3,11 +3,13 @@
 
 Cell::Cell() {};
 
+//A cell is one item on our gameBoard
 Cell::Cell(CellState initState)
 {
     state = initState;
 }
 
+//Getters and setters
 CellState Cell::GetNextState()
 {
     return nextState;
