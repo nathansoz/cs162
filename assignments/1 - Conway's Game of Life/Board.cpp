@@ -169,13 +169,9 @@ void Board::SetBlinkerBoard(int fromTop, int fromLeft)
 
     GenerateEmptyBoard();
 
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN - 1].SetNextState(FILLED);
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN].SetNextState(FILLED);
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN + 1].SetNextState(FILLED);
+    const std::vector<Cord> blinker {Cord(0, 0), Cord(0, 1), Cord(0, 2)};
 
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN - 1].Increment();
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN].Increment();
-    boardWorld[fromTop + MARGIN][fromLeft + MARGIN + 1].Increment();
+    PopulateBoard(blinker, fromTop, fromLeft);
 
 }
 
