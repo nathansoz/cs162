@@ -8,6 +8,6 @@ Instructions:
 3. Choose a starting pattern
 4. Choose the offset for that pattern
 5. You can either
-  a. Go to the (n)ext frame
-  b. Press s to be prompted for how many frames to advance
-  c. E(x)it to main menu
+    1. Go to the (n)ext frame
+    2. Press s to be prompted for how many frames to advance
+    3. E(x)it to main menu
