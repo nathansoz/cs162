@@ -119,6 +119,8 @@ void Board::Tick()
             boardWorld[i][j].Increment();
         }
     }
+
+    frame++;
 }
 
 
