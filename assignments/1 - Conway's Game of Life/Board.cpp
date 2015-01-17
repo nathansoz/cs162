@@ -35,6 +35,7 @@ Board::~Board()
 
 void Board::PrintBoard()
 {
+    std::cout << "Frame:" << frame << std::endl;
     for(int i = MARGIN; i < boardHeight - MARGIN; i++)
     {
         for(int j = MARGIN; j  < boardWidth - MARGIN; j++)
@@ -150,6 +151,7 @@ void Board::GenerateEmptyBoard()
         }
     }
 
+    frame = 0;
 }
 
 void Board::PopulateBoard(std::vector<Cord> const & cords, int fromTop, int fromleft)

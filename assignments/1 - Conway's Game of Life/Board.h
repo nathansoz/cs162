@@ -25,6 +25,7 @@ class Board
 
         int boardHeight;
         int boardWidth;
+        int frame;
 
         bool boardInit;
 
