@@ -22,8 +22,9 @@ class Board
     private:
         Cell** boardWorld;
 
-        long boardHeight;
-        long boardWidth;
+
+        int boardHeight;
+        int boardWidth;
 
         bool boardInit;
 
@@ -33,10 +34,11 @@ class Board
         Board(int, int);
         ~Board();
 
-        void GenerateEmptyBoard(int, int);
+        void GenerateEmptyBoard();
         void PopulateBoard(const std::vector<Cord>&, int, int);
-        void SetBlinkerBoard(int, int, int, int);
-        void SetGliderGun(int, int,int, int);
+        void SetBlinkerBoard(int, int);
+        void SetGlider(int, int);
+        void SetGliderGun(int, int);
         void Tick();
         void PrintBoard();
 

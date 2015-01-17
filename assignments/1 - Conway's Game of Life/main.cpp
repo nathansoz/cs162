@@ -4,20 +4,60 @@
 #include "Board.h"
 #include "Cell.h"
 
+void GameLoop(Board &board)
+{
+    system("clear");
+    board.PrintBoard();
+}
+
 int main()
 {
-    std::chrono::milliseconds restTime(500);
+    //generate one board object that can be used the whole time
+    Board board(22, 80);
 
-    Board board(22, 80); // = Board(22, 80);
-    //board.SetBlinkerBoard(22, 80, 40, 11);
-    board.SetGliderGun(22, 80, 5, 20);
-    while(true)
+    std::cout << "Welcome to Conway's Game of Life!" << std::endl;
+    do
     {
-        board.PrintBoard();
-        board.Tick();
-        std::this_thread::sleep_for(restTime);
-        system("clear");
+        int userInput = -1;
 
-    }
+        std::cout << "Please make a selection from the menu below" << std::endl;
+        std::cout << "1) Simple ocilator" << std::endl;
+        std::cout << "2) Glider" << std::endl;
+        std::cout << "3) Glider gun" << std::endl;
+        std::cout << "4) Exit" << std::endl << std::endl;
+        std::cout << "Choice: ";
+        std::cin >> userInput;
+
+
+
+
+
+        switch(userInput)
+        {
+            case 1:
+            {
+                board.SetBlinkerBoard(15, 10);
+                GameLoop(board);
+                exit(0);
+                break;
+            }
+            case 2:
+            {
+                board.SetGlider(15, 10);
+                GameLoop(board);
+                exit(0);
+                break;
+            }
+            case 3:
+                break;
+            case 4:
+                exit(0);
+            default:
+                break;
+        }
+
+        break;
+    } while (true);
+
     return 0;
 }
