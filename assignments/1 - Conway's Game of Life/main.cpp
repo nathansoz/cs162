@@ -109,7 +109,7 @@ int main()
                 int leftOffset = -1;
 
                 //this while loop to get offsets could probably be moved into a function.
-                while((topOffset < 0 || topOffset > 80) || (leftOffset < 0 || leftOffset > 79))
+                while((topOffset < 0 || topOffset > 21) || (leftOffset < 0 || leftOffset > 79))
                 {
                     std::cin.ignore(1000, '\n');
 
