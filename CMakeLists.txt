@@ -13,6 +13,10 @@ set(LAB_1_2_FILES
     labs/lab1/lab1-2.cpp
 )
 
+set(LAB_3_FILES
+    "labs/lab3/fileSort.cpp"
+)
+
 set(assignment_1_FILES
     "assignments/1 - Conway's Game of Life/main.cpp"
     "assignments/1 - Conway's Game of Life/Cell.cpp"
@@ -21,6 +25,10 @@ set(assignment_1_FILES
     "assignments/1 - Conway's Game of Life/Board.h"
 )
 
+
+
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
+add_executable(lab3 ${LAB_3_FILES})
 add_executable(assignment-1 ${assignment_1_FILES})
