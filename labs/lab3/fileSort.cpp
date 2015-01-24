@@ -60,25 +60,27 @@ int sortTwoFiles(std::string file1, std::string file2)
             {
                 outFileStream << fileValue2 << '\n';
                 fileValue2Used = true;
+
+
             }
             else if(fileContinue1 && !fileContinue2)
             {
                 outFileStream << fileValue1 << '\n';
                 fileValue1Used = true;
             }
-            else if(fileValue1 > fileValue2 && (fileContinue1 && fileContinue2))
+            else if((fileValue1 > fileValue2) && (fileContinue1 && fileContinue2))
             {
                 outFileStream << fileValue2 << '\n';
                 fileValue2Used = true;
             }
-            else if(fileValue1 < fileValue2 && (fileContinue1 && fileContinue2))
+            else if((fileValue1 < fileValue2) && (fileContinue1 && fileContinue2))
             {
                 outFileStream << fileValue1 << '\n';
                 fileValue1Used = true;
             }
-            else if(fileValue1 == fileValue2 && (fileContinue1 && fileContinue2))
+            else if((fileValue1 == fileValue2) && (fileContinue1 && fileContinue2))
             {
-                outFileStream << fileValue1 + '\n' + fileValue2 + '\n';
+                outFileStream << fileValue1 << '\n' << fileValue2 << '\n';
                 fileValue1Used = true;
                 fileValue2Used = true;
             }
