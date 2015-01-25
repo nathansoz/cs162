@@ -25,10 +25,16 @@ set(assignment_1_FILES
     "assignments/1 - Conway's Game of Life/Board.h"
 )
 
-
-
+set(assignment_2_FILES
+    "assignments/2 - Grocery List/Item.cpp"
+    "assignments/2 - Grocery List/List.cpp"
+    "assignments/2 - Grocery List/main.cpp"
+    "assignments/2 - Grocery List/Item.h"
+    "assignments/2 - Grocery List/List.h"
+)
 
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
 add_executable(assignment-1 ${assignment_1_FILES})
+add_executable(assignment-2 ${assignment_2_FILES})
