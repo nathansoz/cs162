@@ -1,6 +1,6 @@
 #pragma once
 
-#import "Dice.h"
+#include "Dice.h"
 
 class LoadedDice : public Dice
 {
