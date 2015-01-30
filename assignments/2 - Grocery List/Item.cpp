@@ -3,7 +3,7 @@
 #include <string>
 #include <iomanip>
 
-Item::Item(std::string name, std::string unit, int qty, double pricePerUnit)
+Item::Item(std::string name, std::string unit, double qty, double pricePerUnit)
 {
     this->name = name;
     this->unit = unit;

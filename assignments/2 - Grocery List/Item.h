@@ -7,13 +7,13 @@ class Item
     private:
         std::string name;
         std::string unit;
-        int qty;
+        double qty;
         double pricePerUnit;
         double total;
 
     public:
         Item();
-        Item(std::string, std::string, int, double);
+        Item(std::string, std::string, double, double);
 
         std::string GetName();
         std::string GetUnit();

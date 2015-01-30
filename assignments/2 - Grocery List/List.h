@@ -16,9 +16,10 @@ class List
 
     public:
         List();
-        void AddItem(Item &item);
-        void DeleteItem(Item &item);
-        Item GetItem(int index);
+        void AddItem(Item&);
+        void DeleteItem(int);
+        int GetCount();
+        Item GetItem(int);
         double GetTotalCost();
 
         void PrintList();

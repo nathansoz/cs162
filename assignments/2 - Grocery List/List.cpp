@@ -12,8 +12,11 @@ void List::AddItem(Item &item)
     groceryList.push_back(item);
 }
 
-void List::DeleteItem(Item &item)
+
+//GETTERS
+int List::GetCount()
 {
+    return groceryList.size();
 }
 
 Item List::GetItem(int index)
@@ -25,17 +28,24 @@ double List::GetTotalCost()
 {
     double total = 0;
 
-    for(int i = 0; i < groceryList.size(); i++)
+    for(uint i = 0; i < groceryList.size(); i++)
     {
         total += groceryList.at(i).GetTotal();
     }
 
     return total;
 }
+//END GETTERS
+
+
+void List::DeleteItem(int index)
+{
+    groceryList.erase(groceryList.begin() + index);
+}
 
 void List::PrintList()
 {
-    for(int i = 0; i < groceryList.size(); i++)
+    for(uint i = 0; i < groceryList.size(); i++)
     {
         std::cout << "Item " << i << ":" << std::endl;
         groceryList.at(i).Print();
@@ -52,6 +62,8 @@ void List::ReadListFromFile(std::ifstream &inFile)
 
     if(getline(inFile, tmpLine))
     {
+        //we don't want our user grabbing an ordinary file
+        //So let's make sure it is part of GroceryApp
         if(tmpLine == "GroceryApp")
         {
             if(getline(inFile, tmpLine))
@@ -104,8 +116,6 @@ void List::ReadListFromFile(std::ifstream &inFile)
             }
 
             Item tmpItem(name, unit, atoi(qty.c_str()), strtod(pricePerUnit.c_str(), NULL));
-
-            AddItem(tmpItem);
         }
     }
     else
@@ -120,7 +130,7 @@ void List::WriteListToFile(std::ofstream &outFile)
 {
     outFile << "GroceryApp" << '\n';
     outFile << "Version 1.0" << '\n';
-    for(int i = 0; i < groceryList.size(); i++)
+    for(uint i = 0; i < groceryList.size(); i++)
     {
         outFile << groceryList.at(i).GetName() << '\n';
         outFile << groceryList.at(i).GetUnit() << '\n';
