@@ -70,13 +70,13 @@ int main()
     List groceryList;
     int choice;
 
-    std::cout << "Welcome to the grocery list program!" << std::endl;
+    std::cout << std::endl << "Welcome to the grocery list program!" << std::endl;
 
     do
     {
         choice = -1;
 
-        std::cout << "Please make a selection" << std::endl;
+        std::cout << std::endl << "Please make a selection" << std::endl;
         std::cout << "1) Add list item." << std::endl;
         std::cout << "2) Delete list item" <<std::endl;
         std::cout << "3) Print list" << std::endl;
@@ -123,7 +123,7 @@ int main()
                 double qty;
                 double pricePerUnit;
 
-                std::cout << "Please enter the name of the item: ";
+                std::cout << std::endl << "Please enter the name of the item: ";
                 getline(std::cin, name);
                 std::cout << "Please enter the unit of measure: ";
                 getline(std::cin, unit);
@@ -169,9 +169,10 @@ int main()
                 int index;
                 std::string indexTempString;
 
+                std::cout << std::endl;
                 groceryList.PrintList();
                 std::cout << std::endl;
-                std::cout << "Please enter the index of the item you would like to delete (list printed for your convenience: ";
+                std::cout << std::endl << "Please enter the index of the item you would like to delete (list printed for your convenience: ";
                 getline(std::cin, indexTempString);
 
                 if(validInt(indexTempString.c_str(), index))
@@ -195,6 +196,7 @@ int main()
             //PRINT LIST
             case 3:
             {
+                std::cout << std::endl;
                 groceryList.PrintList();
                 break;
             }
@@ -207,7 +209,7 @@ int main()
 
                 while(fileName.length() == 0)
                 {
-                    std::cout << "Please enter a filename to save to: ";
+                    std::cout << std::endl << "Please enter a filename to save to: ";
                     getline(std::cin, fileName);
                 }
 
@@ -225,13 +227,19 @@ int main()
 
                 while(fileName.length() == 0)
                 {
-                    std::cout << "Please enter a filename to read from (this will clear the current list in memory): ";
+                    std::cout << std::endl <<
+                                "Please enter a filename to read from (this will clear the current list in memory, type 'return' to keep list in memory): ";
                     getline(std::cin, fileName);
                 }
 
+                //if(fileName == "return")
+                //{
+                    //break;
+                //}
+
                 inFile.open(fileName.c_str());
 
-                if(inFile)
+                if(inFile.is_open())
                 {
                     groceryList.ReadListFromFile(inFile);
                     inFile.close();

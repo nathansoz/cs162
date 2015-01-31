@@ -72,7 +72,12 @@ void List::ReadListFromFile(std::ifstream &inFile)
                 {
                     validFile = true;
                 }
+                
             }
+        }
+        else
+        {
+            std::cout << "File does not appear to be the type that this ptogram can read." <<std::endl;
         }
     }
     else
@@ -116,6 +121,7 @@ void List::ReadListFromFile(std::ifstream &inFile)
             }
 
             Item tmpItem(name, unit, atoi(qty.c_str()), strtod(pricePerUnit.c_str(), NULL));
+            groceryList.push_back(tmpItem);
         }
     }
     else

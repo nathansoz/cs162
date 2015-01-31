@@ -26,8 +26,4 @@ class List
 
         void ReadListFromFile(std::ifstream&);
         void WriteListToFile(std::ofstream&);
-
-
-
-
 };

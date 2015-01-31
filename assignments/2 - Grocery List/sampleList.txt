@@ -1,0 +1,18 @@
+GroceryApp
+Version 1.0
+Soap
+Bars
+4
+2.34
+Wheat
+lbs
+3
+2.33
+Apples
+kg
+2
+3.22
+Tea
+ounces
+23
+2.4
