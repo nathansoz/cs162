@@ -134,7 +134,16 @@ int main()
                     getline(std::cin, qtyTmpString);
                     if(qtyTmpString.length() > 0 && validDouble(qtyTmpString.c_str(), qty))
                     {
-                        break;
+                        if(qty > 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            std::cout << "Zero or negative is not a valid quantity." << std::endl;
+                            continue;
+                        }
+
                     }
                     else
                     {
@@ -149,7 +158,15 @@ int main()
                     getline(std::cin, pricePerUnitTempString);
                     if(pricePerUnitTempString.length() > 0 && validDouble(pricePerUnitTempString.c_str(), pricePerUnit))
                     {
-                        break;
+                        if(pricePerUnit > 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            std::cout << "Zero or negative is not a valid price." << std::endl;
+                            continue;
+                        }
                     }
                     else
                     {
