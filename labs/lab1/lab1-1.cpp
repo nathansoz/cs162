@@ -15,9 +15,6 @@
 * Output:
 *  three numbers, sorted
 *
-*
-*
-*
 */
 
 #include <iostream>

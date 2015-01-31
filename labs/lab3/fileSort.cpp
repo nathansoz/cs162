@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "fstream"
 #include <string>
 
 const char* OUT_FILE_NAME = "outfile.txt";
@@ -15,6 +16,7 @@ int sortTwoFiles(std::string file1, std::string file2)
     fileStream1.open(file1.c_str());
     fileStream2.open(file2.c_str());
     outFileStream.open(OUT_FILE_NAME);
+
 
     int fileValue1;
     int fileValue2;
