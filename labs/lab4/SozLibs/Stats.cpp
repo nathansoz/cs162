@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "Stats.h"
 
+
 SozLibs::Stats::Stats()
 {
 }
@@ -120,8 +121,8 @@ double SozLibs::Stats::StdDev(std::vector<int> &inputValues)
 
     for(int i = 0; i < inputValues.size(); i++)
     {
-        additionOfSquares += pow((inputValues.at(i) - meanOfInput), 2);
+        additionOfSquares += std::pow((inputValues.at(i) - meanOfInput), 2);
     }
 
-    return sqrt((additionOfSquares / static_cast<double>(inputValues.size())));
+    return std::sqrt((additionOfSquares / static_cast<double>(inputValues.size())));
 }
