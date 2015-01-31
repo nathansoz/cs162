@@ -38,6 +38,8 @@ set(lab_4_FILES
     "labs/lab4/Dice.h"
     "labs/lab4/LoadedDice.cpp"
     "labs/lab4/LoadedDice.h"
+    "labs/lab4/SozLibs/Stats.h"
+    "labs/lab4/SozLibs/Stats.cpp"
     "labs/lab4/main.cpp"
 )
 

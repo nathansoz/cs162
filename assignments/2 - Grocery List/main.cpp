@@ -232,10 +232,10 @@ int main()
                     getline(std::cin, fileName);
                 }
 
-                //if(fileName == "return")
-                //{
-                    //break;
-                //}
+                if(fileName == "return")
+                {
+                    break;
+                }
 
                 inFile.open(fileName.c_str());
 
