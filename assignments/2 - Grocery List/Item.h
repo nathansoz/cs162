@@ -17,7 +17,7 @@ class Item
 
         std::string GetName();
         std::string GetUnit();
-        int GetQty();
+        double GetQty();
         double GetPricePerUnit();
         double GetTotal();
 
