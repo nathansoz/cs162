@@ -22,7 +22,7 @@ std::string Item::GetUnit()
     return unit;
 }
 
-int Item::GetQty()
+double Item::GetQty()
 {
     return qty;
 }

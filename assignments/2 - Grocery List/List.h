@@ -16,7 +16,7 @@ class List
 
     public:
         List();
-        void AddItem(Item&);
+        void AddItem();
         void DeleteItem(int);
         int GetCount();
         Item GetItem(int);

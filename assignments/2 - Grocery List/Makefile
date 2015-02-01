@@ -1,6 +1,6 @@
 CC = g++
 DEBUG = -g
-CFLAGS =  $(DEBUG) -std=c++0x
+CFLAGS =  $(DEBUG) -std=c++0x -lncurses -lmenu -lform
 PROGS = glist
 MAKEFLAGS = -k
 

@@ -21,267 +21,166 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ncurses.h>
+#include <menu.h>
+#include <string.h>
+#include <form.h>
 
 
 //custom headers
 #include "List.h"
 #include "Item.h"
 
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+
 //Helper functions to validate user input of numbers
-bool validInt(const char* tmpString, int &retVal)
-{
-    long convertVal;
-    char* end;
 
-    convertVal = strtol(tmpString, &end, 10);
 
-    if(*end != '\0')
-    {
-        return false;
-    }
-    else
-    {
-        retVal = static_cast<int>(convertVal);
-        return true;
-    }
-}
 
-bool validDouble(const char* tmpString, double &retVal)
-{
-    char* end;
-
-    retVal = strtod(tmpString, &end);
-
-    if(*end != '\0')
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-
-}
 //end helper functions
 
-//Main program loop. Will loop until user chooses option 6
+const char *menuItems[] = {
+        "Add Item",
+        "Remove Item",
+        "Print List",
+        "Save List to file",
+        "Load list from file",
+        "Exit",
+};
+
 int main()
 {
     List groceryList;
-    int choice;
+    ITEM **my_items;
+    int c;
+    MENU *my_menu;
+    int n_choices;
+    ITEM *cur_item;
 
-    std::cout << std::endl << "Welcome to the grocery list program!" << std::endl;
+    initscr();
+    cbreak();
+    noecho();
+    keypad(stdscr, true);
 
-    do
+    n_choices = ARRAY_SIZE(menuItems);
+    my_items = (ITEM**)calloc(n_choices + 1, sizeof(ITEM *));
+
+    for(int i = 0; i < n_choices; i++)
     {
-        choice = -1;
+        my_items[i] = new_item(menuItems[i], NULL);
+    }
+    my_items[n_choices] = (ITEM*)NULL;
 
-        std::cout << std::endl << "Please make a selection" << std::endl;
-        std::cout << "1) Add list item." << std::endl;
-        std::cout << "2) Delete list item" <<std::endl;
-        std::cout << "3) Print list" << std::endl;
-        std::cout << "4) Save list to file" << std::endl;
-        std::cout << "5) Load list from file" << std::endl;
-        std::cout << "6) Exit" << std::endl;
-        std::cout << "Choice: ";
+    my_menu = new_menu(my_items);
+    mvprintw(LINES-2, 0, "F1 to Exit");
+    post_menu(my_menu);
+    refresh();
 
-        //Get the input and sanity check. Ensure that it is in range and a valid integer
-        while(choice < 1 || choice > 6)
+    while((c = getch()) != KEY_F(1))
+    {
+        switch(c)
         {
-            std::string strChoice;
-            getline(std::cin, strChoice);
-
-            if(!validInt(strChoice.c_str(), choice))
-            {
-                std::cout << "invalid selection!" << std::endl;
-                std::cout << "Choice: ";
-                continue;
-            }
-
-            if(choice < 1 || choice > 6)
-            {
-                std::cout << "invalid selection!" << std::endl;
-                std::cout << "Choice: ";
-                continue;
-            }
-
-
-        }
-
-        //All of the menu choice logic happens here. Mostly input processing and calls to the List and Item libraries
-        //I did choose to check my filename input here instead of in the libraries... I'm not sure which is the
-        //better choice....
-        switch(choice)
-        {
-            //ADD ITEM
-            case 1:
-            {
-                std::string name;
-                std::string unit;
-                std::string qtyTmpString;
-                std::string pricePerUnitTempString;
-                double qty;
-                double pricePerUnit;
-
-                std::cout << std::endl << "Please enter the name of the item: ";
-                getline(std::cin, name);
-                std::cout << "Please enter the unit of measure: ";
-                getline(std::cin, unit);
-
-                while(true)
-                {
-                    std::cout << "Please enter the quantity: ";
-                    getline(std::cin, qtyTmpString);
-                    if(qtyTmpString.length() > 0 && validDouble(qtyTmpString.c_str(), qty))
-                    {
-                        if(qty > 0)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            std::cout << "Zero or negative is not a valid quantity." << std::endl;
-                            continue;
-                        }
-
-                    }
-                    else
-                    {
-                        std::cout << "Invalid double!" << std::endl;
-                        continue;
-                    }
-                }
-
-                while(true)
-                {
-                    std::cout << "Please enter the price per unit (no dollar symbol): ";
-                    getline(std::cin, pricePerUnitTempString);
-                    if(pricePerUnitTempString.length() > 0 && validDouble(pricePerUnitTempString.c_str(), pricePerUnit))
-                    {
-                        if(pricePerUnit > 0)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            std::cout << "Zero or negative is not a valid price." << std::endl;
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        std::cout << "Invalid double!" << std::endl;
-                        continue;
-                    }
-                }
-
-                Item tmpItem(name, unit, qty, pricePerUnit);
-                groceryList.AddItem(tmpItem);
+            case KEY_DOWN:
+                menu_driver(my_menu, REQ_DOWN_ITEM);
                 break;
-            }
-
-            //DELETE ITEM (BY INDEX)
-            case 2:
-            {
-                int index;
-                std::string indexTempString;
-
-                std::cout << std::endl;
-                groceryList.PrintList();
-                std::cout << std::endl;
-                std::cout << std::endl << "Please enter the index of the item you would like to delete (list printed for your convenience: ";
-                getline(std::cin, indexTempString);
-
-                if(validInt(indexTempString.c_str(), index))
-                {
-                    if(index < groceryList.GetCount())
-                    {
-                        groceryList.DeleteItem(index);
-                    }
-                    else
-                    {
-                        std::cout << "Index out of range! Going to main menu." << std::endl;
-                    }
-                }
-                else
-                {
-                    std::cout <<"Invalid int! Going to main menu.";
-                }
+            case KEY_UP:
+                menu_driver(my_menu, REQ_UP_ITEM);
                 break;
-            }
-
-            //PRINT LIST
-            case 3:
+            case 10:
             {
-                std::cout << std::endl;
-                groceryList.PrintList();
-                break;
-            }
-
-            //SAVE LIST TO FILE
-            case 4:
-            {
-                std::string fileName = "";
-                std::ofstream outFile;
-
-                while(fileName.length() == 0)
+                //key_enter doesn't work?
+                ITEM *cur;
+                cur = current_item(my_menu);
+                if(strcmp(item_name(cur), "Add Item") == 0)
                 {
-                    std::cout << std::endl << "Please enter a filename to save to: ";
-                    getline(std::cin, fileName);
-                }
-
-                outFile.open(fileName.c_str());
-                groceryList.WriteListToFile(outFile);
-                outFile.close();
-                break;
-            }
-
-            //READ LIST FROM FILE
-            case 5:
-            {
-                std::string fileName = "";
-                std::ifstream inFile;
-
-                while(fileName.length() == 0)
-                {
-                    std::cout << std::endl <<
-                                "Please enter a filename to read from (this will clear the current list in memory, type 'return' to keep list in memory): ";
-                    getline(std::cin, fileName);
-                }
-
-                if(fileName == "return")
-                {
+                    unpost_menu(my_menu);
+                    groceryList.AddItem();
+                    clear();
+                    mvprintw(LINES-2, 0, "F1 to Exit");
+                    post_menu(my_menu);
+                    refresh();
                     break;
                 }
 
-                inFile.open(fileName.c_str());
-
-                if(inFile.is_open())
+                if (strcmp(item_name(cur), "Print List") == 0)
                 {
-                    groceryList.ReadListFromFile(inFile);
-                    inFile.close();
+                    unpost_menu(my_menu);
+                    groceryList.PrintList();
+                    clear();
+                    mvprintw(LINES-2, 0, "F1 to Exit");
+                    post_menu(my_menu);
+                    refresh();
+                    break;
                 }
-                else
+
+                if(strcmp(item_name(cur), "Load list from file") == 0)
                 {
-                    inFile.close();
-                    std::cout << "File does not exist! Returning to main menu!" << std::endl << std::endl;
+                    WINDOW* fileDiag;
+                    int height = 10;
+                    int width = 30;
+                    int starty = (LINES - height) / 2;
+                    int startx = (COLS - width) / 2;
+
+                    fileDiag = newwin(height, width, starty, startx);
+
+                    //WINDOW SETUP
+
+                    wmove(fileDiag, 1, 1);
+                    wprintw(fileDiag, "Enter filename: ");
+
+                    FIELD *field[2];
+                    FORM *load_form;
+                    field[0] = new_field(1, 50, 3, 0, 0, 0);
+                    field[1] = NULL;
+                    set_field_back(field[0], A_UNDERLINE);
+                    field_opts_off(field[0], O_AUTOSKIP);
+
+                    load_form = new_form(field);
+                    set_form_win(load_form, fileDiag);
+                    set_form_sub(load_form, derwin(fileDiag, 10, 30, 1, 0));
+                    box(fileDiag, 0, 0);
+                    wrefresh(fileDiag);
+                    refresh();
+                    keypad(fileDiag, TRUE);
+                    post_form(load_form);
+                    wrefresh(fileDiag);
+                    refresh();
+
+                    int ic;
+                    bool quit = false;
+                    while((ic = wgetch(fileDiag)) != 27 && !quit) //escape key
+                    {
+                        switch(ic)
+                        {
+                            case KEY_DOWN:
+                                form_driver(load_form, REQ_NEXT_FIELD);
+                                break;
+                            case KEY_ENTER:
+                                quit = true;
+                                break;
+                            default:
+                                form_driver(load_form, ic);
+                                break;
+                        }
+                    }
+
+
+
+
                 }
 
                 break;
+
+
             }
-            case 6:
-            {
-                exit(0);
-            }
-            default:
-            {
-                break;
-            }
+
         }
+    }
 
+    free_item(my_items[0]);
+    free_item(my_items[1]);
+    free_menu(my_menu);
+    endwin();
 
-    } while(true);
-
-    //we will never get here
     return 0;
 }
