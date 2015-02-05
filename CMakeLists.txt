@@ -43,9 +43,20 @@ set(lab_4_FILES
     "labs/lab4/main.cpp"
 )
 
+set(lab_5_FILES
+    "labs/lab5/FileFilter.cpp"
+    "labs/lab5/FileFilter.h"
+    "labs/lab5/CopyFileFilter.h"
+    "labs/lab5/CopyFileFilter.cpp"
+    "labs/lab5/EncryptFileFilter.cpp"
+    "labs/lab5/EncryptFileFilter.h"
+    "labs/lab5/main.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
 add_executable(assignment-1 ${assignment_1_FILES})
 add_executable(assignment-2 ${assignment_2_FILES})
 add_executable(lab4 ${lab_4_FILES})
+add_executable(lab5 ${lab_5_FILES})
