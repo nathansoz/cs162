@@ -50,6 +50,10 @@ set(lab_5_FILES
     "labs/lab5/CopyFileFilter.cpp"
     "labs/lab5/EncryptFileFilter.cpp"
     "labs/lab5/EncryptFileFilter.h"
+    "labs/lab5/UpcaseFileFilter.h"
+    "labs/lab5/UpcaseFileFilter.cpp"
+    "labs/lab5/GroupEncryptFileFilter.h"
+    "labs/lab5/GroupEncryptFileFilter.cpp"
     "labs/lab5/main.cpp"
 )
 
