@@ -9,16 +9,18 @@ GroupEncryptFileFilter::GroupEncryptFileFilter(int encryptKey)
 //we need to do more than the base class does, so we have to define a new implementation
 void GroupEncryptFileFilter::doFilter(std::ifstream &in, std::ofstream &out)
 {
+    this->charCounter = 0;
+
     while((in.peek() != EOF))
     {
 
         char inChar;
         char outChar;
 
-        if(charCounter >= 5)
+        if(this->charCounter >= 5)
         {
             out.put(' ');
-            charCounter = 0;
+            this->charCounter = 0;
             continue;
         }
         else if(in.peek() == ' ' || in.peek() == '\n')
@@ -32,7 +34,7 @@ void GroupEncryptFileFilter::doFilter(std::ifstream &in, std::ofstream &out)
             in.get(inChar);
             outChar = transform(inChar);
             out.put(outChar);
-            charCounter++;
+            this->charCounter++;
         }
     }
 }

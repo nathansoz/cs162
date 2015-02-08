@@ -9,7 +9,7 @@ public:
     GroupEncryptFileFilter(int encryptKey);
 private:
     int encryptKey;
-    int charCounter = 0;
+    int charCounter;
     virtual char transform(char ch);
 
 };
