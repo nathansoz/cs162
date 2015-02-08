@@ -33,6 +33,26 @@ set(assignment_2_FILES
     "assignments/2 - Grocery List/List.h"
 )
 
+set(assignment_3_FILES
+    "assignments/3 - Inheritance/Dice.cpp"
+    "assignments/3 - Inheritance/Dice.h"
+    "assignments/3 - Inheritance/SozLibs/Stats.h"
+    "assignments/3 - Inheritance/SozLibs/Stats.cpp"
+    "assignments/3 - Inheritance/Character.cpp"
+    "assignments/3 - Inheritance/Character.h"
+    "assignments/3 - Inheritance/Barbarian.cpp"
+    "assignments/3 - Inheritance/Barbarian.h"
+    "assignments/3 - Inheritance/ReptilePeople.cpp"
+    "assignments/3 - Inheritance/ReptilePeople.h"
+    "assignments/3 - Inheritance/BlueMen.h"
+    "assignments/3 - Inheritance/BlueMen.cpp"
+    "assignments/3 - Inheritance/Goblin.cpp"
+    "assignments/3 - Inheritance/Goblin.h"
+    "assignments/3 - Inheritance/Shadow.cpp"
+    "assignments/3 - Inheritance/Shadow.h"
+    "assignments/3 - Inheritance/TestDriver.cpp"
+)
+
 set(lab_4_FILES
     "labs/lab4/Dice.cpp"
     "labs/lab4/Dice.h"
@@ -64,3 +84,4 @@ add_executable(assignment-1 ${assignment_1_FILES})
 add_executable(assignment-2 ${assignment_2_FILES})
 add_executable(lab4 ${lab_4_FILES})
 add_executable(lab5 ${lab_5_FILES})
+add_executable(assignment-3 ${assignment_3_FILES})
