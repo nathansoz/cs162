@@ -77,6 +77,16 @@ set(lab_5_FILES
     "labs/lab5/main.cpp"
 )
 
+set(lab_6_sort_FILES
+    "labs/lab6/sort.cpp"
+)
+set(lab_6_search_FILES
+    "labs/lab6/search.cpp"
+)
+set(lab_6_binarySearch_FILES
+    "labs/lab6/binarySearch.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
@@ -85,3 +95,6 @@ add_executable(assignment-2 ${assignment_2_FILES})
 add_executable(lab4 ${lab_4_FILES})
 add_executable(lab5 ${lab_5_FILES})
 add_executable(assignment-3 ${assignment_3_FILES})
+add_executable(lab6-sort ${lab_6_sort_FILES})
+add_executable(lab6-search ${lab_6_search_FILES})
+add_executable(lab6-binarySearch ${lab_6_binarySearch_FILES})
