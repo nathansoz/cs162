@@ -33,6 +33,26 @@ set(assignment_2_FILES
     "assignments/2 - Grocery List/List.h"
 )
 
+set(assignment_3_FILES
+    "assignments/3 - Inheritance/Dice.cpp"
+    "assignments/3 - Inheritance/Dice.h"
+    "assignments/3 - Inheritance/SozLibs/Stats.h"
+    "assignments/3 - Inheritance/SozLibs/Stats.cpp"
+    "assignments/3 - Inheritance/Character.cpp"
+    "assignments/3 - Inheritance/Character.h"
+    "assignments/3 - Inheritance/Barbarian.cpp"
+    "assignments/3 - Inheritance/Barbarian.h"
+    "assignments/3 - Inheritance/ReptilePeople.cpp"
+    "assignments/3 - Inheritance/ReptilePeople.h"
+    "assignments/3 - Inheritance/BlueMen.h"
+    "assignments/3 - Inheritance/BlueMen.cpp"
+    "assignments/3 - Inheritance/Goblin.cpp"
+    "assignments/3 - Inheritance/Goblin.h"
+    "assignments/3 - Inheritance/Shadow.cpp"
+    "assignments/3 - Inheritance/Shadow.h"
+    "assignments/3 - Inheritance/TestDriver.cpp"
+)
+
 set(lab_4_FILES
     "labs/lab4/Dice.cpp"
     "labs/lab4/Dice.h"
@@ -57,6 +77,16 @@ set(lab_5_FILES
     "labs/lab5/main.cpp"
 )
 
+set(lab_6_sort_FILES
+    "labs/lab6/sort.cpp"
+)
+set(lab_6_search_FILES
+    "labs/lab6/search.cpp"
+)
+set(lab_6_binarySearch_FILES
+    "labs/lab6/binarySearch.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
@@ -64,3 +94,7 @@ add_executable(assignment-1 ${assignment_1_FILES})
 add_executable(assignment-2 ${assignment_2_FILES})
 add_executable(lab4 ${lab_4_FILES})
 add_executable(lab5 ${lab_5_FILES})
+add_executable(assignment-3 ${assignment_3_FILES})
+add_executable(lab6-sort ${lab_6_sort_FILES})
+add_executable(lab6-search ${lab_6_search_FILES})
+add_executable(lab6-binarySearch ${lab_6_binarySearch_FILES})
