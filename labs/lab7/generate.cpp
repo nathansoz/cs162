@@ -14,7 +14,7 @@ void FillFile(std::ofstream &outFile, int numGenerations)
     boost::mt19937 randomNum(time(0));
     boost::uniform_int<int> distribution(1, 9);
 
-    boost::random::variate_generator< boost::mt19937&, boost::uniform_int<int> >
+    boost::variate_generator< boost::mt19937&, boost::uniform_int<int> >
             generateRand( randomNum, distribution);
 
     if(outFile)
