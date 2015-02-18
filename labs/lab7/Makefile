@@ -13,4 +13,4 @@ search:
 	$(CC) $(CFLAGS) search.cpp -o search
 
 clean:
-	rm -f *.o generate
+	rm -f *.o generate search

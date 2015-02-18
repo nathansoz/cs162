@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <ctime>
 
-#include <boost/date_time/posix_time/posix_time.hpp>
 
 void ReadFile(std::string fileName, std::vector<int> *retVector)
 {
@@ -30,28 +30,23 @@ void ReadFile(std::string fileName, std::vector<int> *retVector)
 
 int search(std::vector<int> *searchVector, int searchVal)
 {
-    boost::posix_time::ptime start = boost::posix_time::microsec_clock::local_time();
-
+    std::clock_t t;
     int retVal = -1;
 
+    t = clock();
     for(int i = 0; i < searchVector->size(); i++)
     {
         if(searchVector->at(i) == searchVal)
         {
-            boost::posix_time::ptime end = boost::posix_time::microsec_clock::local_time();
-            boost::posix_time::time_duration elapsed = end - start;
-            std::cout << elapsed.total_microseconds() << std::endl;
-
+            t = clock() - t;
+            std::cout << t << std::endl;
             return i;
 
         }
     }
 
-    boost::posix_time::ptime end = boost::posix_time::microsec_clock::local_time();
-
-    boost::posix_time::time_duration elapsed = end - start;
-
-    std::cout << elapsed.total_microseconds() << std::endl;
+    t = clock() - t;
+    std::cout << t << std::endl;
 
     return retVal;
 
