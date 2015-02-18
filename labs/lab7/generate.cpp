@@ -11,10 +11,10 @@ void FillFile(std::ofstream &outFile, int numGenerations)
 {
     //Adapted from this example of c++11 random number generation:
     //  http://www.guyrutenberg.com/2014/05/03/c-mt19937-example/
-    boost::mt19937_64 randomNum(time(0));
+    boost::mt19937 randomNum(time(0));
     boost::uniform_int<int> distribution(1, 9);
 
-    boost::random::variate_generator< boost::mt19937_64&, boost::uniform_int<int> >
+    boost::random::variate_generator< boost::mt19937&, boost::uniform_int<int> >
             generateRand( randomNum, distribution);
 
     if(outFile)
