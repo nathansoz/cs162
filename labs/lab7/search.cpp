@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 
-#include <boost/timer/timer.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 void ReadFile(std::string fileName, std::vector<int> *retVector)

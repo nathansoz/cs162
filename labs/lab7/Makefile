@@ -1,6 +1,6 @@
 CC = g++
 DEBUG = -g
-CFLAGS =  $(DEBUG) -std=c++0x -lboost_timer -lboost_system
+CFLAGS =  $(DEBUG) -std=c++0x
 PROGS = generate search
 MAKEFLAGS = -k
 
