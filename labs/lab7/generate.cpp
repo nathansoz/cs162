@@ -94,7 +94,7 @@ int main()
     std::cin >> numberOfRandoms;
 
     std::cin.ignore(1000, '\n');
-    std::cout << "Please enter the prefix of the generated files that you would like: ";
+    std::cout << "Please enter the prefix for the name of generated files: ";
     getline(std::cin, filePrefix);
 
     std::string earlyZero = filePrefix + "-early0.txt";
@@ -108,6 +108,7 @@ int main()
     {
         out.open(files[i].c_str());
         FillFile(out, generateRand, numberOfRandoms, zero_positions[i]);
+        std::cout << "Filled file " << files[i] << " with random numbers." << std::endl;
         out.close();
     }
 

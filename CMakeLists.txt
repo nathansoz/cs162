@@ -97,6 +97,14 @@ set(lab_7_search_FILES
     "labs/lab7/search.cpp"
 )
 
+set(lab_7_sort_FILES
+    "labs/lab7/sort.cpp"
+)
+
+set(lab_7_binarySearch_FILES
+    "labs/lab7/binarySearch.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
@@ -110,3 +118,5 @@ add_executable(lab6-search ${lab_6_search_FILES})
 add_executable(lab6-binarySearch ${lab_6_binarySearch_FILES})
 add_executable(lab7-generate ${lab_7_generate_FILES})
 add_executable(lab7-search ${lab_7_search_FILES})
+add_executable(lab7-sort ${lab_7_sort_FILES})
+add_executable(lab7-binarySearch ${lab_7_binarySearch_FILES})
