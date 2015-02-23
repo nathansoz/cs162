@@ -39,14 +39,14 @@ int search(std::vector<int> *searchVector, int searchVal)
         if(searchVector->at(i) == searchVal)
         {
             t = clock() - t;
-            std::cout << t << std::endl;
+            std::cout << "Total time was " << t << " processor cycles." << std::endl;
             return i;
 
         }
     }
 
     t = clock() - t;
-    std::cout << t << std::endl;
+    std::cout << "Total time was " << t << " processor cycles." << std::endl;
 
     return retVal;
 

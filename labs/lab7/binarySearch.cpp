@@ -71,7 +71,7 @@ int main()
     t = clock();
     int position = binarySearch(searchInts, 0, searchInts->size(), 0);
     t = clock() - t;
-    std::cout << t << std::endl;
+    std::cout << "Total time was " << t << " processor cycles." << std::endl;
 
     if(position == -1)
     {

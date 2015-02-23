@@ -50,7 +50,7 @@ void BubbleSort(std::vector<int> *sortArray)
     }
 
     t = clock() - t;
-    std::cout << t << std::endl;
+    std::cout << "Total time was " << t << " processor cycles." << std::endl;
 }
 
 
