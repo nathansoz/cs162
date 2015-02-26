@@ -83,6 +83,83 @@ void AddChars(std::queue<Character*> *charQueue, int numPlayers)
 
 }
 
+Character* AttackSim(Character *attacker, Character *defender)
+{
+    while (attacker->IsAlive() && defender->IsAlive())
+    {
+        if(attacker->IsAlive())
+        {
+            attacker->Attack(defender);
+        }
+
+        if (defender->IsAlive())
+        {
+            defender->Attack(attacker);
+        }
+    }
+}
+
+void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *player2Challengers,
+            std::stack<Character*> *player1Defeated, std::stack<Character*> *player2Defeated)
+{
+    while(player1Challengers->size() > 0 && player2Challengers->size() > 0)
+    {
+        AttackSim(player1Challengers->front(), player2Challengers->front());
+
+        if(player1Challengers->front()->IsAlive())
+        {
+            //Let's get rid of the looser
+            player2Defeated->push(player2Challengers->front());
+            player2Challengers->pop();
+
+            //And give the winner a break
+            player1Challengers->push(player1Challengers->front());
+            player1Challengers->pop();
+        }
+        else if(player2Challengers->front()->IsAlive())
+        {
+            //Let's get rid of the looser
+            player1Defeated->push(player1Challengers->front());
+            player1Challengers->pop();
+
+            //And give the winner a break
+            player2Challengers->push(player2Challengers->front());
+            player2Challengers->pop();
+        }
+
+        std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
+        std::cout << "Player 2 has " << player2Challengers->size() << " remaining chars." << std::endl;
+
+        AttackSim(player2Challengers->front(), player1Challengers->front());
+
+        if(player1Challengers->front()->IsAlive())
+        {
+            //Let's get rid of the looser
+            player2Defeated->push(player2Challengers->front());
+            player2Challengers->pop();
+
+            //And give the winner a break
+            player1Challengers->push(player1Challengers->front());
+            player1Challengers->pop();
+        }
+        else if(player2Challengers->front()->IsAlive())
+        {
+            //Let's get rid of the looser
+            player1Defeated->push(player1Challengers->front());
+            player1Challengers->pop();
+
+            //And give the winner a break
+            player2Challengers->push(player2Challengers->front());
+            player2Challengers->pop();
+        }
+
+        std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
+        std::cout << "Player 2 has " << player2Challengers->size() << " remaining chars." << std::endl;
+
+    }
+
+}
+
 int GetNumberOfSimulations()
 {
     int numSims = -1;
@@ -110,13 +187,15 @@ int main()
     //Define containers needed for our simulation
     std::queue<Character*> *player1Challengers = new std::queue<Character*>();
     std::queue<Character*> *player2Challengers = new std::queue<Character*>();
-    std::stack<Character> *player1Defeated = new std::stack<Character>();
-    std::stack<Character> *player2Defeated = new std::stack<Character>();
+    std::stack<Character*> *player1Defeated = new std::stack<Character*>();
+    std::stack<Character*> *player2Defeated = new std::stack<Character*>();
 
     numSims = GetNumberOfSimulations();
 
     AddChars(player1Challengers, numSims);
     AddChars(player2Challengers, numSims);
+
+    Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
 
     return 0;
 }
