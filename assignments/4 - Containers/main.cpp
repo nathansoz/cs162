@@ -113,8 +113,11 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player2Challengers->pop();
 
             //And give the winner a break
-            player1Challengers->push(player1Challengers->front());
+            Character* tmpChar = player1Challengers->front();
+            tmpChar->Regen();
             player1Challengers->pop();
+            player1Challengers->push(tmpChar);
+
         }
         else if(player2Challengers->front()->IsAlive())
         {
@@ -123,12 +126,20 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player1Challengers->pop();
 
             //And give the winner a break
-            player2Challengers->push(player2Challengers->front());
+            Character* tmpChar = player2Challengers->front();
+            tmpChar->Regen();
             player2Challengers->pop();
+            player2Challengers->push(tmpChar);
+
         }
 
         std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
         std::cout << "Player 2 has " << player2Challengers->size() << " remaining chars." << std::endl;
+
+        if(player1Challengers->size() == 0 || player2Challengers->size() == 0)
+        {
+            break;
+        }
 
         AttackSim(player2Challengers->front(), player1Challengers->front());
 
@@ -139,8 +150,10 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player2Challengers->pop();
 
             //And give the winner a break
-            player1Challengers->push(player1Challengers->front());
+            Character* tmpChar = player1Challengers->front();
+            tmpChar->Regen();
             player1Challengers->pop();
+            player1Challengers->push(tmpChar);
         }
         else if(player2Challengers->front()->IsAlive())
         {
@@ -149,8 +162,10 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player1Challengers->pop();
 
             //And give the winner a break
-            player2Challengers->push(player2Challengers->front());
+            Character* tmpChar = player2Challengers->front();
+            tmpChar->Regen();
             player2Challengers->pop();
+            player2Challengers->push(tmpChar);
         }
 
         std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
@@ -182,6 +197,7 @@ int GetNumberOfSimulations()
 
 int main()
 {
+    srand(time(NULL));
     int numSims;
 
     //Define containers needed for our simulation
@@ -196,6 +212,38 @@ int main()
     AddChars(player2Challengers, numSims);
 
     Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
+
+    while(player1Defeated->size() > 0)
+    {
+        Character* del = player1Defeated->top();
+        player1Defeated->pop();
+        delete del;
+    }
+
+    while(player2Defeated->size() > 0)
+    {
+        Character* del = player2Defeated->top();
+        player2Defeated->pop();
+        delete del;
+    }
+
+    while(player1Challengers->size() > 0)
+    {
+        Character* del = player1Challengers->front();
+        player1Challengers->pop();
+        delete del;
+    }
+    while(player2Challengers->size() > 0)
+    {
+        Character* del = player2Challengers->front();
+        player2Challengers->pop();
+        delete del;
+    }
+
+    delete player1Challengers;
+    delete player2Challengers;
+    delete player1Defeated;
+    delete player2Defeated;
 
     return 0;
 }

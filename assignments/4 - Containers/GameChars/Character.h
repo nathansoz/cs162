@@ -32,9 +32,13 @@ public:
     virtual void Defend(int attackRoll);
     virtual void Reset();
 
+    void Regen();
+
     virtual std::string GetName();
     int GetStrengthPoints;
     bool IsAlive();
+
+    virtual ~Character();
 
 
 };

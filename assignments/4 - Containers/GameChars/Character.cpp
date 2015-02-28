@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "../SozLibs/Dice.h"
+#include "Character.h"
 
 #include <iostream>
 
@@ -69,3 +70,19 @@ const int Character::RollDefense()
 
     return defense;
 }
+
+void Character::Regen()
+{
+    int addPoints = (rand() % 5) + 1;
+    if(totalStrengthPoints < addPoints + currentStrengthPoints)
+    {
+        currentStrengthPoints = totalStrengthPoints;
+    }
+    else
+    {
+        currentStrengthPoints += addPoints;
+    }
+}
+
+Character::~Character(){}
+
