@@ -13,6 +13,7 @@ ReptilePeople::ReptilePeople()
     armor = 7;
     totalStrengthPoints = 18;
     currentStrengthPoints = totalStrengthPoints;
+    kills = 0;
 
     attackDie = new SozLibs::Dice(attackDieSides);
     defenseDie = new SozLibs::Dice(defenceDieSides);

@@ -9,7 +9,9 @@
 
 #include <iostream>
 #include <stack>
+#include <vector>
 #include <queue>
+
 
 void AddChars(std::queue<Character*> *charQueue, int numPlayers)
 {
@@ -114,6 +116,7 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
 
             //And give the winner a break
             Character* tmpChar = player1Challengers->front();
+            tmpChar->AddKill();
             tmpChar->Regen();
             player1Challengers->pop();
             player1Challengers->push(tmpChar);
@@ -127,6 +130,7 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
 
             //And give the winner a break
             Character* tmpChar = player2Challengers->front();
+            tmpChar->AddKill();
             tmpChar->Regen();
             player2Challengers->pop();
             player2Challengers->push(tmpChar);
@@ -151,6 +155,7 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
 
             //And give the winner a break
             Character* tmpChar = player1Challengers->front();
+            tmpChar->AddKill();
             tmpChar->Regen();
             player1Challengers->pop();
             player1Challengers->push(tmpChar);
@@ -163,6 +168,7 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
 
             //And give the winner a break
             Character* tmpChar = player2Challengers->front();
+            tmpChar->AddKill();
             tmpChar->Regen();
             player2Challengers->pop();
             player2Challengers->push(tmpChar);
@@ -172,6 +178,76 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
         std::cout << "Player 2 has " << player2Challengers->size() << " remaining chars." << std::endl;
 
     }
+
+}
+
+void DisplayPlaces(std::queue<Character*> *player1Challengers, std::queue<Character*> *player2Challengers,
+        std::stack<Character*> *player1Defeated, std::stack<Character*> *player2Defeated)
+{
+    int currentPlace = 1;
+    int currentScore;
+
+    std::priority_queue<Character*, std::vector<Character*>, CompareCharacterKills>* places =
+            new std::priority_queue<Character*, std::vector<Character*>, CompareCharacterKills>();
+
+    int numplayer1Chal = player1Challengers->size();
+    int numplayer2Chal = player2Challengers->size();
+    int numplayer1def = player1Defeated->size();
+    int numplayer2def = player2Defeated->size();
+
+    for(int i = 0; i < numplayer1Chal; i++)
+    {
+        places->push(player1Challengers->front());
+        player1Challengers->pop();
+    }
+    for(int i = 0; i < numplayer2Chal; i++)
+    {
+        places->push(player2Challengers->front());
+        player2Challengers->pop();
+    }
+    for(int i = 0; i < numplayer1def; i++)
+    {
+        places->push(player1Defeated->top());
+        player1Defeated->pop();
+    }
+    for(int i = 0; i < numplayer2def; i++)
+    {
+        places->push(player2Defeated->top());
+        player2Defeated->pop();
+    }
+
+
+
+
+    while(currentPlace <= 3 && places->size() > 0)
+    {
+        Character* tmpChar = places->top();
+        currentScore = tmpChar->GetKills();
+        std::cout << "In " << currentPlace << " with " << tmpChar->GetKills() << "kill(s) is " << places->top()->GetName() << std::endl;
+        places->pop();
+        delete tmpChar;
+
+        std::cout << "Also tied:" << std::endl;
+
+        while(places->top()->GetKills() == currentScore && places->size() > 0)
+        {
+            Character* loopTmpChar = places->top();
+            std::cout << loopTmpChar->GetName() << std::endl;
+            places->pop();
+            delete loopTmpChar;
+        }
+
+        currentPlace++;
+    }
+
+    while(places->size() > 0)
+    {
+        Character* tmpChar = places->top();
+        places->pop();
+        delete tmpChar;
+    }
+
+    delete places;
 
 }
 
@@ -213,32 +289,8 @@ int main()
 
     Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
 
-    while(player1Defeated->size() > 0)
-    {
-        Character* del = player1Defeated->top();
-        player1Defeated->pop();
-        delete del;
-    }
+    DisplayPlaces(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
 
-    while(player2Defeated->size() > 0)
-    {
-        Character* del = player2Defeated->top();
-        player2Defeated->pop();
-        delete del;
-    }
-
-    while(player1Challengers->size() > 0)
-    {
-        Character* del = player1Challengers->front();
-        player1Challengers->pop();
-        delete del;
-    }
-    while(player2Challengers->size() > 0)
-    {
-        Character* del = player2Challengers->front();
-        player2Challengers->pop();
-        delete del;
-    }
 
     delete player1Challengers;
     delete player2Challengers;

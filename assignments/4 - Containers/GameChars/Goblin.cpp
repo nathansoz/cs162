@@ -13,6 +13,7 @@ Goblin::Goblin()
     armor = 3;
     totalStrengthPoints = 8;
     currentStrengthPoints = totalStrengthPoints;
+    kills = 0;
     cutOpponentTendon = false;
 
     attackDie = new SozLibs::Dice(attackDieSides);

@@ -4,6 +4,11 @@
 
 #include <iostream>
 
+void Character::AddKill()
+{
+    kills++;
+}
+
 void Character::Attack(Character *defender)
 {
     int attackRoll = this->RollAttack();
@@ -33,6 +38,11 @@ void Character::Defend(int attackRoll)
 std::string Character::GetName()
 {
     return name;
+}
+
+int Character::GetKills()
+{
+    return kills;
 }
 
 bool Character::IsAlive()
@@ -85,4 +95,12 @@ void Character::Regen()
 }
 
 Character::~Character(){}
+
+bool CompareCharacterKills::operator()(Character *char1, Character *char2)
+{
+    if(char1->GetKills() <= char2->GetKills())
+        return true;
+    else
+        return false;
+}
 

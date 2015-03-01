@@ -70,6 +70,7 @@ set(assignment_4_FILES
     "assignments/4 - Containers/GameChars/Goblin.h"
     "assignments/4 - Containers/GameChars/Shadow.cpp"
     "assignments/4 - Containers/GameChars/Shadow.h"
+
     "assignments/4 - Containers/main.cpp"
 
 )
@@ -124,6 +125,12 @@ set(lab_7_binarySearch_FILES
     "labs/lab7/binarySearch.cpp"
 )
 
+set(lab_8_FILES
+    "labs/lab8/Maze.h"
+    "labs/lab8/Maze.cpp"
+    "labs/lab8/gameLoop.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
@@ -140,3 +147,4 @@ add_executable(lab7-search ${lab_7_search_FILES})
 add_executable(lab7-sort ${lab_7_sort_FILES})
 add_executable(lab7-binarySearch ${lab_7_binarySearch_FILES})
 add_executable(assignment4 ${assignment_4_FILES})
+add_executable(lab8 ${lab_8_FILES})

@@ -9,6 +9,7 @@ class Character
 
 protected:
     std::string name;
+    std::string displayName;
 
     int attackRolls;
     int attackDieSides;
@@ -22,6 +23,7 @@ protected:
     int totalStrengthPoints;
     int currentStrengthPoints;
     bool alive;
+    int kills;
 
     virtual const int RollAttack();
     virtual const int RollDefense();
@@ -37,8 +39,18 @@ public:
     virtual std::string GetName();
     int GetStrengthPoints;
     bool IsAlive();
+    void AddKill();
+    int GetKills();
 
     virtual ~Character();
 
 
+
 };
+
+class CompareCharacterKills
+{
+public:
+    bool operator()(Character* char1, Character* char2);
+};
+

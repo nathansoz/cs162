@@ -14,6 +14,7 @@ Shadow::Shadow()
     armor = 0;
     totalStrengthPoints = 12;
     currentStrengthPoints = totalStrengthPoints;
+    kills = 0;
 
     attackDie = new SozLibs::Dice(attackDieSides);
     defenseDie = new SozLibs::Dice(defenceDieSides);
