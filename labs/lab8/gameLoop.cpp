@@ -49,7 +49,7 @@ void GameLoop(Maze* maze)
         command = std::getchar();
         std::cin.ignore(1000, '\n');
 
-        switch(command)
+        switch(tolower(command))
         {
             case 'n':
             {
@@ -134,6 +134,7 @@ int main()
 
     GameLoop(gameMaze);
 
+    //Implemented destructor that takes care of all memory associated with Maze object
     delete gameMaze;
 
     return 0;
