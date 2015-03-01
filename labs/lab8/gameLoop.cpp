@@ -35,13 +35,13 @@ void GameLoop(Maze* maze)
         else
             std::cout << std::endl << "You are in a room" << std::endl;
         std::cout << "You can go: ";
-        if(currentRoom->GetRoom(NORTH) != nullptr)
+        if(currentRoom->GetRoom(NORTH) != NULL)
             std::cout << "(n)orth  ";
-        if(currentRoom->GetRoom(EAST) != nullptr)
+        if(currentRoom->GetRoom(EAST) != NULL)
             std::cout << "(e)ast  ";
-        if(currentRoom->GetRoom(SOUTH) != nullptr)
+        if(currentRoom->GetRoom(SOUTH) != NULL)
             std::cout << "(s)outh  ";
-        if(currentRoom->GetRoom(WEST) != nullptr)
+        if(currentRoom->GetRoom(WEST) != NULL)
             std::cout << "(w)est  ";
         std::cout << std::endl;
 
@@ -54,7 +54,7 @@ void GameLoop(Maze* maze)
             case 'n':
             {
                 Room *tmpRoom = currentRoom->GetRoom(NORTH);
-                if (tmpRoom == nullptr)
+                if (tmpRoom == NULL)
                     std::cout << "You cannot go that way." << std::endl;
                 else
                 {
@@ -67,7 +67,7 @@ void GameLoop(Maze* maze)
             case 'e':
             {
                 Room *tmpRoom = currentRoom->GetRoom(EAST);
-                if (tmpRoom == nullptr)
+                if (tmpRoom == NULL)
                     std::cout << "You cannot go that way." << std::endl;
                 else
                 {
@@ -80,7 +80,7 @@ void GameLoop(Maze* maze)
             case 's':
             {
                 Room *tmpRoom = currentRoom->GetRoom(SOUTH);
-                if (tmpRoom == nullptr)
+                if (tmpRoom == NULL)
                     std::cout << "You cannot go that way." << std::endl;
                 else
                 {
@@ -93,7 +93,7 @@ void GameLoop(Maze* maze)
             case 'w':
             {
                 Room *tmpRoom = currentRoom->GetRoom(WEST);
-                if (tmpRoom == nullptr)
+                if (tmpRoom == NULL)
                     std::cout << "You cannot go that way." << std::endl;
                 else
                 {

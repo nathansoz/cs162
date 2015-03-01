@@ -13,22 +13,22 @@ Room* Room::AddRoom(Direction dir, std::string label)
 {
     if(dir == NORTH)
     {
-        this->north = new Room(nullptr, nullptr, this, nullptr, label);
+        this->north = new Room(NULL, NULL, this, NULL, label);
         return this->north;
     }
     else if(dir == EAST)
     {
-        this->east = new Room(nullptr, nullptr, nullptr, this, label);
+        this->east = new Room(NULL, NULL, NULL, this, label);
         return this->east;
     }
     else if(dir == SOUTH)
     {
-        this->south = new Room(this, nullptr, nullptr, nullptr, label);
+        this->south = new Room(this, NULL, NULL, NULL, label);
         return this->south;
     }
     else if(dir == WEST)
     {
-        this->west = new Room(nullptr, this, nullptr, nullptr, label);
+        this->west = new Room(NULL, this, NULL, NULL, label);
         return this->west;
     }
 
@@ -49,7 +49,7 @@ Room* Room::GetRoom(Direction dir)
         case WEST:
             return this->west;
         default:
-            return nullptr;
+            return NULL;
     }
 }
 
@@ -62,7 +62,7 @@ Maze::Maze()
 {
 
     //make a path
-    start = new Room(nullptr, nullptr, nullptr, nullptr, "START");
+    start = new Room(NULL, NULL, NULL, NULL, "START");
     Room* pathRoom1 = start->AddRoom(EAST, "ROOM1");
     Room* pathRoom2 = pathRoom1->AddRoom(NORTH, "ROOM2");
     Room* pathRoom3 = pathRoom2->AddRoom(EAST, "ROOM3");
