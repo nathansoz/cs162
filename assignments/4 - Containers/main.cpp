@@ -295,6 +295,7 @@ int main()
     std::cout << std::endl << "Adding characters for player 2: " << std::endl << std::endl;
     AddChars(player2Challengers, numSims);
 
+    //The hard work of the program is done here
     Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated, player1Kills, player2Kills);
 
     DisplayPlaces(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
