@@ -20,9 +20,11 @@ void AddChars(std::queue<Character*> *charQueue, int numPlayers)
     do
     {
         int playerSelection = -1;
-        int numOfType = -1;
+        std::string displayName = "";
 
-        std::cout << "Please select the character type that you would like to add" << std::endl;
+
+        std::cout << std::endl << "Please select the character type that you would like to add ("
+                  << playerCount << " characters remaining):" << std::endl;
         std::cout << "1. Barbarian" << std::endl;
         std::cout << "2. BlueMen" << std::endl;
         std::cout << "3. Goblin" << std::endl;
@@ -33,52 +35,37 @@ void AddChars(std::queue<Character*> *charQueue, int numPlayers)
 
         if(playerSelection > 0 && playerSelection < 6)
         {
+            std::cin.ignore(1000, '\n');
+            std::cout << "What should the name of this character be: ";
             do
             {
-                std::cout << "How many of this type should we add? (Max: " << playerCount << ")" << ": ";
-                std::cin >> numOfType;
-            } while(numOfType < 1 && numOfType <= playerCount);
+                getline(std::cin, displayName);
+            } while(displayName == "");
 
-            playerCount -= numOfType;
+
 
             switch(playerSelection)
             {
                 case(1):
-                    for(int i = 0; i < numOfType; i++)
-                    {
-                        charQueue->push(new Barbarian());
-                    }
+                    charQueue->push(new Barbarian(displayName));
                     break;
                 case(2):
-                    for(int i = 0; i < numOfType; i++)
-                    {
-                        charQueue->push(new BlueMen());
-                    }
+                    charQueue->push(new BlueMen(displayName));
                     break;
                 case(3):
-                    for(int i = 0; i < numOfType; i++)
-                    {
-                        charQueue->push(new Goblin());
-                    }
+                    charQueue->push(new Goblin(displayName));
                     break;
                 case(4):
-                    for(int i = 0; i < numOfType; i++)
-                    {
-                        charQueue->push(new ReptilePeople());
-                    }
+                    charQueue->push(new ReptilePeople(displayName));
                     break;
                 case(5):
-                    for(int i = 0; i < numOfType; i++)
-                    {
-                        charQueue->push(new Shadow());
-                    }
+                    charQueue->push(new Shadow(displayName));
                     break;
                 default:
                     break;
-
             }
 
-
+            playerCount--;
         }
     }
     while(playerCount > 0);
@@ -102,7 +89,8 @@ Character* AttackSim(Character *attacker, Character *defender)
 }
 
 void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *player2Challengers,
-            std::stack<Character*> *player1Defeated, std::stack<Character*> *player2Defeated)
+            std::stack<Character*> *player1Defeated, std::stack<Character*> *player2Defeated,
+            int &player1Kills, int &player2Kills)
 {
     while(player1Challengers->size() > 0 && player2Challengers->size() > 0)
     {
@@ -121,6 +109,9 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player1Challengers->pop();
             player1Challengers->push(tmpChar);
 
+            //And credit player 1 with the victory
+            player1Kills++;
+
         }
         else if(player2Challengers->front()->IsAlive())
         {
@@ -135,6 +126,9 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             player2Challengers->pop();
             player2Challengers->push(tmpChar);
 
+            //And credit player 2 with the victory
+            player2Kills++;
+
         }
 
         std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
@@ -144,6 +138,9 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
         {
             break;
         }
+
+        //run the whole thing again in reverse to be fair.... I'm sure there is some clever recursive
+        //algo that could do this, but this works for now.
 
         AttackSim(player2Challengers->front(), player1Challengers->front());
 
@@ -159,6 +156,9 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             tmpChar->Regen();
             player1Challengers->pop();
             player1Challengers->push(tmpChar);
+
+            //And credit player 1 with the victory
+            player1Kills++;
         }
         else if(player2Challengers->front()->IsAlive())
         {
@@ -172,6 +172,9 @@ void Battle(std::queue<Character*> *player1Challengers, std::queue<Character*> *
             tmpChar->Regen();
             player2Challengers->pop();
             player2Challengers->push(tmpChar);
+
+            //And credit player 2 with the victory
+            player2Kills++;
         }
 
         std::cout << "Player 1 has " << player1Challengers->size() << " remaining chars." << std::endl;
@@ -223,7 +226,8 @@ void DisplayPlaces(std::queue<Character*> *player1Challengers, std::queue<Charac
     {
         Character* tmpChar = places->top();
         currentScore = tmpChar->GetKills();
-        std::cout << "In " << currentPlace << " with " << tmpChar->GetKills() << "kill(s) is " << places->top()->GetName() << std::endl;
+        std::cout << "In " << currentPlace << " with " << tmpChar->GetKills() << " kill(s) is "
+                  << places->top()->GetDisplayName() << std::endl;
         places->pop();
         delete tmpChar;
 
@@ -232,7 +236,7 @@ void DisplayPlaces(std::queue<Character*> *player1Challengers, std::queue<Charac
         while(places->top()->GetKills() == currentScore && places->size() > 0)
         {
             Character* loopTmpChar = places->top();
-            std::cout << loopTmpChar->GetName() << std::endl;
+            std::cout << loopTmpChar->GetDisplayName() << std::endl;
             places->pop();
             delete loopTmpChar;
         }
@@ -275,6 +279,8 @@ int main()
 {
     srand(time(NULL));
     int numSims;
+    int player1Kills = 0;
+    int player2Kills = 0;
 
     //Define containers needed for our simulation
     std::queue<Character*> *player1Challengers = new std::queue<Character*>();
@@ -284,12 +290,23 @@ int main()
 
     numSims = GetNumberOfSimulations();
 
+    std::cout << std::endl << "Adding characters for player 1: " << std::endl << std::endl;
     AddChars(player1Challengers, numSims);
+    std::cout << std::endl << "Adding characters for player 2: " << std::endl << std::endl;
     AddChars(player2Challengers, numSims);
 
-    Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
+    Battle(player1Challengers, player2Challengers, player1Defeated, player2Defeated, player1Kills, player2Kills);
 
     DisplayPlaces(player1Challengers, player2Challengers, player1Defeated, player2Defeated);
+
+    std::cout << std::endl << "Player 1 had " << player1Kills << " kills" << std::endl;
+    std::cout << "Player 2 had " << player2Kills << " kills" << std::endl;
+    if(player1Kills > player2Kills)
+        std::cout << "Player 1 wins!" << std::endl;
+    else if(player1Kills < player2Kills)
+        std::cout << "Player 2 wins!" << std::endl;
+    else
+        std::cout << "It's a tie!" << std::endl;
 
 
     delete player1Challengers;

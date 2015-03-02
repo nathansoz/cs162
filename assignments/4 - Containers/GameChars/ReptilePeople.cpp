@@ -1,8 +1,9 @@
 #include "ReptilePeople.h"
 
-ReptilePeople::ReptilePeople()
+ReptilePeople::ReptilePeople(std::string displayName)
 {
     name = "ReptilePeople";
+    this->displayName = displayName;
 
     alive = true;
     attackDieSides = 6;

@@ -1,8 +1,9 @@
 #include "Goblin.h"
 
-Goblin::Goblin()
+Goblin::Goblin(std::string displayName)
 {
     name = "Goblin";
+    this->displayName = displayName;
 
     alive = true;
     attackDieSides = 6;

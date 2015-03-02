@@ -1,8 +1,9 @@
 #include "BlueMen.h"
 
-BlueMen::BlueMen()
+BlueMen::BlueMen(std::string displayName)
 {
     name = "BlueMen";
+    this->displayName = displayName;
 
     alive = true;
     attackDieSides = 10;

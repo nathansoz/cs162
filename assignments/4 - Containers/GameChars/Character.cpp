@@ -104,3 +104,7 @@ bool CompareCharacterKills::operator()(Character *char1, Character *char2)
         return false;
 }
 
+std::string Character::GetDisplayName()
+{
+    return this->displayName;
+}

@@ -7,7 +7,7 @@ class Goblin : public Character
 private:
     bool cutOpponentTendon;
 public:
-    Goblin();
+    Goblin(std::string displayName);
     ~Goblin();
 
     virtual void Attack(Character*);

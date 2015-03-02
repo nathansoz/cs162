@@ -37,7 +37,7 @@ public:
     void Regen();
 
     virtual std::string GetName();
-    int GetStrengthPoints;
+    std::string GetDisplayName();
     bool IsAlive();
     void AddKill();
     int GetKills();

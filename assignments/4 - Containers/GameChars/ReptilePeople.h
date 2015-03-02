@@ -5,6 +5,6 @@
 class ReptilePeople : public Character
 {
 public:
-    ReptilePeople();
+    ReptilePeople(std::string displayName);
     ~ReptilePeople();
 };

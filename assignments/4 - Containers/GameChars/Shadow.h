@@ -5,7 +5,7 @@
 class Shadow : public Character
 {
 public:
-    Shadow();
+    Shadow(std::string displayName);
     ~Shadow();
 
     virtual void Defend(int attackRoll);

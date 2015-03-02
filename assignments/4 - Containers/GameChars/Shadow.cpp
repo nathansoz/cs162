@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Shadow.h"
 
-Shadow::Shadow()
+Shadow::Shadow(std::string displayName)
 {
     name = "Shadow";
+    this->displayName = displayName;
 
     alive = true;
     attackDieSides = 10;

@@ -1,8 +1,9 @@
 #include "Barbarian.h"
 
-Barbarian::Barbarian()
+Barbarian::Barbarian(std::string displayName)
 {
     name = "Barbarian";
+    this->displayName = displayName;
 
     alive = true;
     attackDieSides = 6;
