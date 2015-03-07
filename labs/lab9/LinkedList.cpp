@@ -1,14 +1,30 @@
 #include <stddef.h>
-#include "LLists.h"
+#include "Node.h"
+#include "LinkedList.h"
 
-LinkedList::LinkedList()
+template <typename T>
+LinkedList<T>::LinkedList()
 {
     head = NULL;
     current = head;
 }
 
+template<typename T>
+LinkedList<T>::~LinkedList()
+{
+    Node<T>* iterate = head;
+
+    while(iterate != NULL)
+    {
+        Node<T>* tmp = iterate->next;
+        delete iterate;
+        iterate = tmp;
+    }
+
+}
+
 template <typename T>
-T LinkedList::GetData()
+T LinkedList<T>::GetData()
 {
     if(current == NULL)
         return NULL;
@@ -17,13 +33,13 @@ T LinkedList::GetData()
 }
 
 template <typename T>
-Node<T>* LinkedList::GetHead()
+Node<T>* LinkedList<T>::GetHead()
 {
     return head;
 }
 
 template <typename T>
-Node<T>* LinkedList::GetTail()
+Node<T>* LinkedList<T>::GetTail()
 {
     Node<T>* currentNode = head;
 
@@ -40,12 +56,16 @@ Node<T>* LinkedList::GetTail()
     }
 }
 
-void LinkedList::GoToHead()
+
+template <typename T>
+void LinkedList<T>::GoToHead()
 {
     current = head;
 }
 
-void LinkedList::Next()
+
+template <typename T>
+void LinkedList<T>::Next()
 {
     if(this->current->next == NULL)
         return;
@@ -54,53 +74,44 @@ void LinkedList::Next()
 }
 
 template <typename T>
-void LinkedList::InsertAfter(T data, Node *)
-{
-    if (this->IsEmpty())
-    {
-        head = new Node(data, NULL);
-        current = head;
-    }
-}
-
-template <typename T>
-void LinkedList::InsertHead(T data)
+void LinkedList<T>::InsertHead(T data)
 {
     if(this->IsEmpty())
     {
-        head = new Node(data, NULL);
+        head = new Node<T>(data, NULL);
         current = head;
     }
     else
     {
-        Node *tmpNode = new Node(data, head);
+        Node<T> *tmpNode = new Node<T>(data, head);
         head = tmpNode;
     }
 }
 
 template <typename T>
-void LinkedList::InsertTail(T data)
+void LinkedList<T>::InsertTail(T data)
 {
     //If our list is empty, then inserting into the tail is just like inserting into the head
     if(head == NULL)
     {
-        head = new Node(data, NULL);
+        head = new Node<T>(data, NULL);
     }
     else
     {
-        Node* tail = GetTail();
-        tail->next = new Node(data, NULL);
+        Node<T>* tail = GetTail();
+        tail->next = new Node<T>(data, NULL);
     }
 }
 
-bool LinkedList::InList(Node* nodeToFind)
+template <typename T>
+bool LinkedList<T>::InList(Node<T>* nodeToFind)
 {
     if(this->IsEmpty())
     {
         return false;
     }
 
-    Node* currentNode = head;
+    Node<T>* currentNode = head;
 
     while(true)
     {
@@ -114,7 +125,8 @@ bool LinkedList::InList(Node* nodeToFind)
 
 }
 
-bool LinkedList::IsEmpty()
+template <typename T>
+bool LinkedList<T>::IsEmpty()
 {
     if(head == NULL)
         return true;
@@ -122,7 +134,8 @@ bool LinkedList::IsEmpty()
         return false;
 }
 
-bool LinkedList::IsHead(Node* nodeToCheck)
+template <typename T>
+bool LinkedList<T>::IsHead(Node<T>* nodeToCheck)
 {
     if(nodeToCheck == head)
         return true;
@@ -130,10 +143,24 @@ bool LinkedList::IsHead(Node* nodeToCheck)
         return false;
 }
 
-bool LinkedList::IsTail(Node * nodeToCheck)
+template <typename T>
+bool LinkedList<T>::IsTail(Node<T> * nodeToCheck)
 {
     if(nodeToCheck == this->GetTail())
         return true;
     else
         return false;
+}
+
+template <typename T>
+void LinkedList<T>::DeleteHead()
+{
+    if(head == NULL)
+        return;
+    else
+    {
+        Node<T>* tmp = head;
+        head = tmp->next;
+        delete tmp;
+    }
 }

@@ -1,25 +1,26 @@
+#pragma once
+
+#include <stddef.h>
 #include "Node.h"
 
 template <typename T>
 class LinkedList
 {
 private:
-
-
     Node<T> *head;
     Node<T> *current;
 
-    Node<T>* GetTail();
-    Node<T>* GetHead();
+    virtual Node<T>* GetTail();
+    virtual Node<T>* GetHead();
 
     bool IsHead(Node<T>*);
     bool IsTail(Node<T>*);
     bool InList(Node<T>*);
 
-    void InsertAfter(T, Node<T>*);
 
 public:
     LinkedList();
+    ~LinkedList();
 
 
     void InsertHead(T);
@@ -28,8 +29,12 @@ public:
     T GetData();
     void GoToHead();
     void Next();
+    void DeleteHead();
 
 
     bool IsEmpty();
 
 };
+
+
+#include "LinkedList.cpp"

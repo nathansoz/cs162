@@ -132,14 +132,14 @@ set(lab_8_FILES
 )
 
 set(lab_9_FILES
-    "labs/lab9/node.h"
-    "labs/lab9/node.cpp"
+    "labs/lab9/SozLibs/Dice.cpp"
+    "labs/lab9/SozLibs/Dice.h"
+    "labs/lab9/Node.h"
     "labs/lab9/Stack.h"
-    "labs/lab9/Stack.cpp"
-    "labs/lab9/LLists.cpp"
-    "labs/lab9/LLists.h"
-    "labs/lab9/tests/test-linkedlist-single.cpp"
-
+    "labs/lab9/Queue.h"
+    "labs/lab9/LinkedList.h"
+    "labs/lab9/DLinkedList.h"
+    "labs/lab9/TestDriver.cpp"
 
 )
 
