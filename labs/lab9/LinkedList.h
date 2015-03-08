@@ -26,10 +26,10 @@ public:
     void InsertHead(T);
     void InsertTail(T);
 
+    void DeleteHead();
     T GetData();
     void GoToHead();
     void Next();
-    void DeleteHead();
 
 
     bool IsEmpty();

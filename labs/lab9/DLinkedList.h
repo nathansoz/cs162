@@ -3,6 +3,11 @@
 #include <stddef.h>
 #include "Node.h"
 
+/*
+    Implementation for a linked list in which one can go
+    forward and backwards (Doubly linked list)
+ */
+
 template <typename T>
 class DLinkedList
 {
@@ -26,12 +31,11 @@ public:
     void InsertHead(T);
     void InsertTail(T);
 
+    void DeleteHead();
     T GetData();
     void GoToHead();
     void Next();
     void Prev();
-    void DeleteHead();
-
 
     bool IsEmpty();
 
