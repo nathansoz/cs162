@@ -173,9 +173,6 @@ bool LinkedList<T>::IsEmpty()
 }
 
 
-
-
-
 /*
     Private implementation functions
 
@@ -203,13 +200,6 @@ Node<T>* LinkedList<T>::GetTail()
             currentNode = currentNode->next;
         }
     }
-}
-
-
-template <typename T>
-void LinkedList<T>::GoToHead()
-{
-    current = head;
 }
 
 template <typename T>
