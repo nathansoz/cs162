@@ -37,7 +37,7 @@ void TestQueue()
     SozLibs::Dice* die = new SozLibs::Dice(10);
     Queue<int>* test = new Queue<int>();
 
-    std::cout << std::endl <<  "Pushing random numbers on to stack... ";
+    std::cout << std::endl <<  "Pushing random numbers on to queue... ";
 
     for(int i = 0; i < 10; i++)
     {
