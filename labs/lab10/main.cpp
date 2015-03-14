@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <chrono>
 #include <fstream>
+#include <boost/chrono/system_clocks.hpp>
 
 // Fibonacci definitions from
 // http://planet.jboss.org/post/fibonacci_sequence_with_and_without_recursion
@@ -79,38 +80,38 @@ int main()
 
     for(int i = 1; i < 30; i++) {
         int fibNonRecurseVal;
-
-        std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
+        
+        boost::chrono::steady_clock::time_point t1 = boost::chrono::steady_clock::now();
         fibNonRecurseVal = fibNonRecurse(i);
-        std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
-        std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
+        boost::chrono::steady_clock::time_point t2 = boost::chrono::steady_clock::now();
+        boost::chrono::duration<double> durationFibNonRecurse = boost::chrono::duration_cast<boost::chrono::duration<double>>(t2-t1);
         std::cout << fibNonRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << std::setprecision(10) << durationFibNonRecurse.count() << " clicks. (Fib non-recursive)" << std::endl;
         fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << durationFibNonRecurse.count() << "\n";
 
         int fibRecurseVal;
-        std::chrono::steady_clock::time_point p1 = std::chrono::steady_clock::now();
+        boost::chrono::steady_clock::time_point p1 = boost::chrono::steady_clock::now();
         fibRecurseVal = fibRecurse(i);
-        std::chrono::steady_clock::time_point p2 = std::chrono::steady_clock::now();
-        std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2-p1);
+        boost::chrono::steady_clock::time_point p2 = boost::chrono::steady_clock::now();
+        boost::chrono::duration<double> durationFibRecurse = boost::chrono::duration_cast<boost::chrono::duration<double>>(p2-p1);
         std::cout << fibRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << durationFibRecurse.count() << " clicks. (Fib recursive)" << std::endl;
         fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << durationFibRecurse.count() << "\n";
 
         double facNonTail;
-        std::chrono::steady_clock::time_point x1 = std::chrono::steady_clock::now();
+        boost::chrono::steady_clock::time_point x1 = boost::chrono::steady_clock::now();
         facNonTail = rfactorialNonTail(i);
-        std::chrono::steady_clock::time_point x2 = std::chrono::steady_clock::now();
-        std::chrono::duration<double> durationFacNonTail = std::chrono::duration_cast<std::chrono::duration<double>>(x2-x1);
+        boost::chrono::steady_clock::time_point x2 = boost::chrono::steady_clock::now();
+        boost::chrono::duration<double> durationFacNonTail = boost::chrono::duration_cast<boost::chrono::duration<double>>(x2-x1);
         std::cout << facNonTail << std::endl;
         std::cout << "Total time was " << std::fixed << durationFacNonTail.count() << " clicks. (Fac Non-Tail recursive)" << std::endl;
         facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << durationFacNonTail.count() << "\n";
 
         double facTail;
-        std::chrono::steady_clock::time_point y1 = std::chrono::steady_clock::now();
+        boost::chrono::steady_clock::time_point y1 = boost::chrono::steady_clock::now();
         facTail = rfactorialTail(static_cast<double>(i));
-        std::chrono::steady_clock::time_point y2 = std::chrono::steady_clock::now();
-        std::chrono::duration<double> durationFacTail = std::chrono::duration_cast<std::chrono::duration<double>>(y2-y1);
+        boost::chrono::steady_clock::time_point y2 = boost::chrono::steady_clock::now();
+        boost::chrono::duration<double> durationFacTail = boost::chrono::duration_cast<boost::chrono::duration<double>>(y2-y1);
         std::cout << facTail << std::endl;
         std::cout << "Total time was " << std::fixed << durationFacTail.count() << " clicks. (Fac Tail recursive)" << std::endl;
         facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << durationFacTail.count() << "\n";
