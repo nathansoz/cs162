@@ -80,40 +80,37 @@ int main()
     for(int i = 1; i < 30; i++) {
         int fibNonRecurseVal;
 
-        std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+        clock_t t;
+        t = clock();
         fibNonRecurseVal = fibNonRecurse(i);
-        std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
+        t = clock() - t;
         std::cout << fibNonRecurseVal << std::endl;
-        std::cout << "Total time was " << std::fixed << std::setprecision(10) << durationFibNonRecurse.count() << " clicks. (Fib non-recursive)" << std::endl;
-        fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << durationFibNonRecurse.count() << "\n";
+        std::cout << "Total time was " << std::fixed << std::setprecision(10) << t << " clicks. (Fib non-recursive)" << std::endl;
+        fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << t << "\n";
 
         int fibRecurseVal;
-        std::chrono::high_resolution_clock::time_point p1 = std::chrono::high_resolution_clock::now();
+        t = clock();
         fibRecurseVal = fibRecurse(i);
-        std::chrono::high_resolution_clock::time_point p2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2-p1);
+        t = clock() - t;
         std::cout << fibRecurseVal << std::endl;
-        std::cout << "Total time was " << std::fixed << durationFibRecurse.count() << " clicks. (Fib recursive)" << std::endl;
-        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << durationFibRecurse.count() << "\n";
+        std::cout << "Total time was " << std::fixed << t << " clicks. (Fib recursive)" << std::endl;
+        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << t << "\n";
 
         double facNonTail;
-        std::chrono::high_resolution_clock::time_point x1 = std::chrono::high_resolution_clock::now();
+        t = clock();
         facNonTail = rfactorialNonTail(i);
-        std::chrono::high_resolution_clock::time_point x2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFacNonTail = std::chrono::duration_cast<std::chrono::duration<double>>(x2-x1);
+        t = clock() - t;
         std::cout << facNonTail << std::endl;
-        std::cout << "Total time was " << std::fixed << durationFacNonTail.count() << " clicks. (Fac Non-Tail recursive)" << std::endl;
-        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << durationFacNonTail.count() << "\n";
+        std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Non-Tail recursive)" << std::endl;
+        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << t << "\n";
 
         double facTail;
-        std::chrono::high_resolution_clock::time_point y1 = std::chrono::high_resolution_clock::now();
+        t = clock();
         facTail = rfactorialTail(static_cast<double>(i));
-        std::chrono::high_resolution_clock::time_point y2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFacTail = std::chrono::duration_cast<std::chrono::duration<double>>(y2-y1);
+        t = clock() - t;
         std::cout << facTail << std::endl;
-        std::cout << "Total time was " << std::fixed << durationFacTail.count() << " clicks. (Fac Tail recursive)" << std::endl;
-        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << durationFacTail.count() << "\n";
+        std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Tail recursive)" << std::endl;
+        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << t << "\n";
 
     }
 
