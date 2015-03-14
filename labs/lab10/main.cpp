@@ -77,13 +77,14 @@ int main()
 
 
 
-    for(int i = 1; i < 30; i++) {
+    for(int i = 1; i < 30; i++)
+    {
         int fibNonRecurseVal;
 
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
         fibNonRecurseVal = fibNonRecurse(i);
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
+        std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
         std::cout << fibNonRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << std::setprecision(10) << durationFibNonRecurse.count() << " clicks. (Fib non-recursive)" << std::endl;
         fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << durationFibNonRecurse.count() << "\n";
@@ -92,11 +93,13 @@ int main()
         std::chrono::high_resolution_clock::time_point p1 = std::chrono::high_resolution_clock::now();
         fibRecurseVal = fibRecurse(i);
         std::chrono::high_resolution_clock::time_point p2 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2-p1);
+        std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2 - p1);
         std::cout << fibRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << durationFibRecurse.count() << " clicks. (Fib recursive)" << std::endl;
         fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << durationFibRecurse.count() << "\n";
-
+    }
+    for(int i = 100000; i < 100050; i++)
+    {
         double facNonTail;
         std::chrono::high_resolution_clock::time_point x1 = std::chrono::high_resolution_clock::now();
         facNonTail = rfactorialNonTail(i);
