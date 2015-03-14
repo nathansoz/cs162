@@ -102,7 +102,7 @@ int main()
     {
         double facNonTail;
         std::chrono::high_resolution_clock::time_point x1 = std::chrono::high_resolution_clock::now();
-        facNonTail = rfactorialNonTail(i);
+        facNonTail = rfactorialNonTail(static_cast<double>(i));
         std::chrono::high_resolution_clock::time_point x2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationFacNonTail = std::chrono::duration_cast<std::chrono::duration<double>>(x2-x1);
         std::cout << facNonTail << std::endl;
