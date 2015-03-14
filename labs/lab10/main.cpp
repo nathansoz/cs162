@@ -79,13 +79,13 @@ int main()
 
     for(int i = 1; i < 30; i++)
     {
+        std::cout << "i = " << i << std::endl;
         int fibNonRecurseVal;
 
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
         fibNonRecurseVal = fibNonRecurse(i);
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-        std::cout << fibNonRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << std::setprecision(10) << durationFibNonRecurse.count() << " clicks. (Fib non-recursive)" << std::endl;
         fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << durationFibNonRecurse.count() << "\n";
 
@@ -94,18 +94,19 @@ int main()
         fibRecurseVal = fibRecurse(i);
         std::chrono::high_resolution_clock::time_point p2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2 - p1);
-        std::cout << fibRecurseVal << std::endl;
         std::cout << "Total time was " << std::fixed << durationFibRecurse.count() << " clicks. (Fib recursive)" << std::endl;
         fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << durationFibRecurse.count() << "\n";
     }
     for(int i = 100000; i < 100050; i++)
     {
         double facNonTail;
+
+        std::cout << "i = " << i << std::endl;
+
         std::chrono::high_resolution_clock::time_point x1 = std::chrono::high_resolution_clock::now();
         facNonTail = rfactorialNonTail(static_cast<double>(i));
         std::chrono::high_resolution_clock::time_point x2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationFacNonTail = std::chrono::duration_cast<std::chrono::duration<double>>(x2-x1);
-        std::cout << facNonTail << std::endl;
         std::cout << "Total time was " << std::fixed << durationFacNonTail.count() << " clicks. (Fac Non-Tail recursive)" << std::endl;
         facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << durationFacNonTail.count() << "\n";
 
@@ -114,7 +115,6 @@ int main()
         facTail = rfactorialTail(static_cast<double>(i));
         std::chrono::high_resolution_clock::time_point y2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationFacTail = std::chrono::duration_cast<std::chrono::duration<double>>(y2-y1);
-        std::cout << facTail << std::endl;
         std::cout << "Total time was " << std::fixed << durationFacTail.count() << " clicks. (Fac Tail recursive)" << std::endl;
         facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << durationFacTail.count() << "\n";
 
