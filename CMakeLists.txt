@@ -143,6 +143,10 @@ set(lab_9_FILES
 
 )
 
+set(lab_10_FILES
+    "labs/lab10/main.cpp"
+)
+
 add_executable(lab1-1 labs/lab1/lab1-1.cpp)
 add_executable(lab1-2 ${LAB_1_2_FILES})
 add_executable(lab3 ${LAB_3_FILES})
@@ -161,3 +165,4 @@ add_executable(lab7-binarySearch ${lab_7_binarySearch_FILES})
 add_executable(assignment4 ${assignment_4_FILES})
 add_executable(lab8 ${lab_8_FILES})
 add_executable(lab9 ${lab_9_FILES})
+add_executable(lab10 ${lab_10_FILES})
