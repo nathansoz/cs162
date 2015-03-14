@@ -80,7 +80,7 @@ int main()
     for(int i = 1; i < 30; i++) {
         int fibNonRecurseVal;
 
-        clock_t t;
+        std::clock_t t;
         t = clock();
         fibNonRecurseVal = fibNonRecurse(i);
         t = clock() - t;
@@ -89,28 +89,31 @@ int main()
         fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << t << "\n";
 
         int fibRecurseVal;
-        t = clock();
+        std::clock_t u;
+        u = clock();
         fibRecurseVal = fibRecurse(i);
-        t = clock() - t;
+        u = clock() - u;
         std::cout << fibRecurseVal << std::endl;
-        std::cout << "Total time was " << std::fixed << t << " clicks. (Fib recursive)" << std::endl;
-        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << u << " clicks. (Fib recursive)" << std::endl;
+        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << u << "\n";
 
         double facNonTail;
-        t = clock();
+        std::clock_t v;
+        v = clock();
         facNonTail = rfactorialNonTail(i);
-        t = clock() - t;
+        v = clock() - v;
         std::cout << facNonTail << std::endl;
         std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Non-Tail recursive)" << std::endl;
-        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << t << "\n";
+        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << v << "\n";
 
         double facTail;
-        t = clock();
+        std::clock_t w;
+        w = clock();
         facTail = rfactorialTail(static_cast<double>(i));
-        t = clock() - t;
+        w = clock() - w;
         std::cout << facTail << std::endl;
-        std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Tail recursive)" << std::endl;
-        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << w << " clicks. (Fac Tail recursive)" << std::endl;
+        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << w << "\n";
 
     }
 
