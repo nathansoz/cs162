@@ -80,37 +80,40 @@ int main()
     for(int i = 1; i < 30; i++) {
         int fibNonRecurseVal;
 
-        clock_t t;
-        t = clock();
+        std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
         fibNonRecurseVal = fibNonRecurse(i);
-        t = clock() - t;
+        std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> durationFibNonRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
         std::cout << fibNonRecurseVal << std::endl;
-        std::cout << "Total time was " << std::fixed << std::setprecision(10) << t << " clicks. (Fib non-recursive)" << std::endl;
-        fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << std::setprecision(10) << durationFibNonRecurse.count() << " clicks. (Fib non-recursive)" << std::endl;
+        fibNonRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibNonRecurseVal << "," << durationFibNonRecurse.count() << "\n";
 
         int fibRecurseVal;
-        t = clock();
+        std::chrono::high_resolution_clock::time_point p1 = std::chrono::high_resolution_clock::now();
         fibRecurseVal = fibRecurse(i);
-        t = clock() - t;
+        std::chrono::high_resolution_clock::time_point p2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> durationFibRecurse = std::chrono::duration_cast<std::chrono::duration<double>>(p2-p1);
         std::cout << fibRecurseVal << std::endl;
-        std::cout << "Total time was " << std::fixed << t << " clicks. (Fib recursive)" << std::endl;
-        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << durationFibRecurse.count() << " clicks. (Fib recursive)" << std::endl;
+        fibRecurseFile << std::fixed << std::setprecision(10) << i << "," << fibRecurseVal << "," << durationFibRecurse.count() << "\n";
 
         double facNonTail;
-        t = clock();
+        std::chrono::high_resolution_clock::time_point x1 = std::chrono::high_resolution_clock::now();
         facNonTail = rfactorialNonTail(i);
-        t = clock() - t;
+        std::chrono::high_resolution_clock::time_point x2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> durationFacNonTail = std::chrono::duration_cast<std::chrono::duration<double>>(x2-x1);
         std::cout << facNonTail << std::endl;
-        std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Non-Tail recursive)" << std::endl;
-        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << durationFacNonTail.count() << " clicks. (Fac Non-Tail recursive)" << std::endl;
+        facNonTailFile << std::fixed << std::setprecision(10) << i << "," << facNonTail << "," << durationFacNonTail.count() << "\n";
 
         double facTail;
-        t = clock();
+        std::chrono::high_resolution_clock::time_point y1 = std::chrono::high_resolution_clock::now();
         facTail = rfactorialTail(static_cast<double>(i));
-        t = clock() - t;
+        std::chrono::high_resolution_clock::time_point y2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> durationFacTail = std::chrono::duration_cast<std::chrono::duration<double>>(y2-y1);
         std::cout << facTail << std::endl;
-        std::cout << "Total time was " << std::fixed << t << " clicks. (Fac Tail recursive)" << std::endl;
-        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << t << "\n";
+        std::cout << "Total time was " << std::fixed << durationFacTail.count() << " clicks. (Fac Tail recursive)" << std::endl;
+        facTailFile << std::fixed << std::setprecision(10) << i << "," << facTail << "," << durationFacTail.count() << "\n";
 
     }
 
