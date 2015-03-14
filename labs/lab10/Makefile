@@ -1,7 +1,6 @@
 CC = g++
-CFLAGS =  -std=c++0x
+CFLAGS = -std=c++0x -O3 
 PROGS = main
-MAKEFLAGS = -k
 
 all: $(PROGS)
 
